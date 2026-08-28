@@ -1,0 +1,1982 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  /* Design Tokens - Lenskart App Design Language */
+  --lk-primary: #000c24;      /* Deep Slate/Midnight Blue */
+  --lk-secondary: #00bac6;    /* Vibrant Teal */
+  --lk-accent: #ff4757;       /* Soft Coral */
+  --lk-warning: #ffa502;      /* Warm Gold */
+  --lk-success: #2ed573;      /* Emerald Green */
+  --lk-bg-light: #f7f9fc;     /* Soft Off-White */
+  --lk-bg-card: #ffffff;      /* Pure White */
+  --lk-text-main: #1e293b;    /* Slate 800 */
+  --lk-text-sub: #64748b;     /* Slate 500 */
+  --lk-border: #e2e8f0;       /* Slate 200 */
+  --lk-radius: 16px;
+  
+  /* Game / Arcade UI tokens */
+  --game-bg: #121824;         /* Rich Dark Navy */
+  --game-primary: #00ffcc;    /* Neon Cyan */
+  --game-accent: #ff007f;     /* Neon Pink */
+  --game-yellow: #ffd200;     /* Retro Arcade Yellow */
+  --game-text: #ffffff;
+  
+  /* Developer Console Tokens */
+  --dev-bg: #090d16;
+  --dev-card: #151b26;
+  --dev-border: #232d3f;
+  --dev-text: #94a3b8;
+  --dev-accent: #38bdf8;
+  --dev-green: #4ade80;
+  --dev-red: #f87171;
+  --dev-yellow: #fbbf24;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #0d1117;
+  color: #f8fafc;
+  overflow-x: hidden;
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+}
+
+/* Centered Phone Dashboard Layout */
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(circle at top, #1e293b, #0f172a);
+  overflow: hidden;
+}
+
+/* ==========================================
+   PHONE MOCKUP WRAPPER
+   ========================================== */
+.phone-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Interactive iPhone-like Wrapper */
+.phone-wrapper {
+  width: 390px;
+  height: 800px;
+  background: var(--lk-bg-light);
+  border: 12px solid #000;
+  border-radius: 50px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Speaker/Camera Notch */
+.phone-notch {
+  width: 130px;
+  height: 25px;
+  background: #000;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  z-index: 1010;
+  pointer-events: none;
+}
+
+/* App Switcher Bar */
+.app-switcher-bar {
+  display: flex;
+  background: #e2e8f0;
+  padding: 4px;
+  border-bottom: 1px solid var(--lk-border);
+  gap: 4px;
+  z-index: 1000;
+  margin-top: 40px; /* offset status bar */
+}
+
+.app-switcher-bar.game-mode {
+  background: #1e293b;
+  border-color: #232d3f;
+}
+
+.app-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 8px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--lk-text-sub);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.app-btn.active {
+  background: white;
+  color: var(--lk-primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.app-switcher-bar.game-mode .app-btn.active {
+  background: var(--game-bg);
+  color: var(--game-primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.app-switcher-bar.game-mode .app-btn {
+  color: #94a3b8;
+}
+
+/* Screen Header / Status Bar */
+.phone-status-bar {
+  height: 40px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--lk-text-main);
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  user-select: none;
+}
+
+.phone-status-bar.game-mode {
+  color: var(--game-text);
+  background: var(--game-bg);
+}
+
+.phone-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  position: relative;
+  background: var(--lk-bg-light);
+}
+
+.phone-content.game-mode {
+  background: var(--game-bg);
+}
+
+/* Home Indicator Bar */
+.phone-home-indicator {
+  height: 5px;
+  width: 140px;
+  background: #000;
+  border-radius: 3px;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.phone-home-indicator.game-mode {
+  background: var(--game-text);
+  opacity: 0.5;
+}
+
+/* ==========================================
+   DEVELOPER CONSOLE (RIGHT PANEL)
+   ========================================== */
+.console-panel {
+  background-color: var(--dev-bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.console-header {
+  padding: 16px 24px;
+  background-color: var(--dev-card);
+  border-bottom: 1px solid var(--dev-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.console-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+}
+
+.console-title span {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  background: #2563eb;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.console-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+  padding: 20px;
+  flex: 1;
+  overflow: hidden;
+}
+
+@media (max-width: 1280px) {
+  .console-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    overflow-y: auto;
+  }
+}
+
+.console-card {
+  background-color: var(--dev-card);
+  border: 1px solid var(--dev-border);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 12px 16px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--dev-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #e2e8f0;
+}
+
+.card-body {
+  padding: 16px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ==========================================
+   MOCKUP DATABASE / PERSONA STYLING
+   ========================================== */
+.persona-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.persona-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--dev-border);
+  padding: 12px;
+  border-radius: 8px;
+  color: #cbd5e1;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.persona-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--dev-accent);
+}
+
+.persona-btn.active {
+  background: rgba(56, 189, 248, 0.1);
+  border-color: var(--dev-accent);
+  color: #fff;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.badge.corrected { background-color: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+.badge.unaware { background-color: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+
+/* ==========================================
+   LEDGER VIEWER
+   ========================================== */
+.ledger-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  height: 100%;
+}
+
+.ledger-box {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--dev-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.ledger-box h5 {
+  padding: 8px 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #94a3b8;
+  border-bottom: 1px solid var(--dev-border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.ledger-content {
+  padding: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.ledger-row {
+  padding: 6px 4px;
+  border-bottom: 1px dotted var(--dev-border);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ==========================================
+   WHATSAPP SIMULATOR
+   ========================================== */
+.whatsapp-sim {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.wa-messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  padding: 10px 4px;
+}
+
+.wa-message {
+  max-width: 85%;
+  background: #075e54;
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  align-self: flex-start;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.wa-message::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 0;
+  border-color: transparent #075e54 transparent transparent;
+}
+
+.wa-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: #38bdf8;
+  text-decoration: underline;
+  cursor: pointer;
+  word-break: break-all;
+}
+
+.wa-time {
+  display: block;
+  font-size: 9px;
+  opacity: 0.7;
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* ==========================================
+   COPY LINTER / COMPLIANCE CHECKER
+   ========================================== */
+.linter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lint-item {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lint-item.pass {
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.2);
+  color: #4ade80;
+}
+
+.lint-item.fail {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  color: #f87171;
+}
+
+/* ==========================================
+   EVENT LOGS
+   ========================================== */
+.event-log-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+}
+
+.event-log-item {
+  padding: 6px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 3px solid var(--dev-accent);
+}
+
+.event-log-item .time {
+  color: #64748b;
+  margin-right: 6px;
+}
+
+.event-log-item .name {
+  color: #f8fafc;
+  font-weight: bold;
+}
+
+.event-log-item .props {
+  color: #94a3b8;
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+/* ==========================================
+   LENSKART MOBILE APP COMPONENTS
+   ========================================== */
+.lk-header {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--lk-border);
+  background: #fff;
+}
+
+.lk-logo {
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+  color: var(--lk-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lk-logo span {
+  color: var(--lk-secondary);
+}
+
+.lk-home-tile {
+  margin: 16px;
+  background: linear-gradient(135deg, #000c24 0%, #001f4d 100%);
+  color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 12, 36, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.lk-home-tile:hover {
+  transform: translateY(-2px);
+}
+
+.lk-home-tile::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  width: 100px;
+  height: 100px;
+  background: var(--lk-secondary);
+  opacity: 0.15;
+  border-radius: 50%;
+}
+
+.lk-home-tile h3 {
+  font-size: 20px;
+  margin-bottom: 6px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.lk-home-tile p {
+  font-size: 13px;
+  opacity: 0.9;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.lk-home-tile-footer {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.lk-home-tile-badge {
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.lk-home-tile-badge.free {
+  background: var(--lk-secondary);
+  color: #000c24;
+}
+
+/* Stale Prescription Card */
+.stale-card {
+  margin: 16px;
+  background: #fff;
+  border: 1px solid var(--lk-accent);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 10px 15px -3px rgba(255, 71, 87, 0.1);
+  position: relative;
+}
+
+.stale-card-alert {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--lk-accent);
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.stale-card h4 {
+  color: var(--lk-primary);
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.stale-card p.subtitle {
+  color: var(--lk-text-sub);
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.stale-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+  background: var(--lk-bg-light);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.stale-item {
+  font-size: 11px;
+}
+
+.stale-item label {
+  display: block;
+  color: var(--lk-text-sub);
+  margin-bottom: 2px;
+}
+
+.stale-item span {
+  font-weight: 600;
+  color: var(--lk-text-main);
+}
+
+.btn-primary {
+  width: 100%;
+  background: var(--lk-secondary);
+  color: #000c24;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:disabled {
+  background: #cbd5e1;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Parent Consent Screen */
+.consent-screen {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+}
+
+.consent-screen h2 {
+  color: var(--lk-primary);
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.consent-screen p.desc {
+  color: var(--lk-text-sub);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.consent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.consent-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.consent-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--lk-text-sub);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.consent-checkbox.checked {
+  border-color: var(--lk-secondary);
+  background-color: var(--lk-secondary);
+}
+
+.consent-checkbox.checked::after {
+  content: '✓';
+  color: #000c24;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.consent-text {
+  font-size: 12px;
+  color: var(--lk-text-main);
+  line-height: 1.4;
+}
+
+.consent-text strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 2px;
+  color: var(--lk-primary);
+}
+
+.consent-dpdp-note {
+  font-size: 11px;
+  background: var(--lk-bg-light);
+  color: var(--lk-text-sub);
+  padding: 10px;
+  border-radius: 8px;
+  line-height: 1.4;
+  margin-bottom: 16px;
+  border-left: 3px solid var(--lk-secondary);
+}
+
+/* Whose Phone */
+.phone-select-screen {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+}
+
+.phone-select-screen h2 {
+  font-size: 22px;
+  color: var(--lk-primary);
+  margin-bottom: 8px;
+}
+
+.phone-select-screen p {
+  font-size: 13px;
+  color: var(--lk-text-sub);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.option-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.option-card {
+  border: 2px solid var(--lk-border);
+  border-radius: 16px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.option-card:hover {
+  border-color: var(--lk-secondary);
+  background-color: var(--lk-bg-light);
+}
+
+.option-card.active {
+  border-color: var(--lk-secondary);
+  background-color: rgba(0, 186, 198, 0.05);
+}
+
+.option-card h3 {
+  font-size: 15px;
+  color: var(--lk-primary);
+  margin-bottom: 4px;
+}
+
+.option-card p {
+  font-size: 12px;
+  color: var(--lk-text-sub);
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
+.input-container {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeIn 0.3s ease;
+}
+
+.input-container label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--lk-text-main);
+}
+
+.input-field {
+  padding: 12px;
+  border: 1px solid var(--lk-border);
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: var(--lk-secondary);
+}
+
+/* Calibration */
+.calibration-screen {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+}
+
+.calibration-card-slider {
+  background: var(--lk-bg-light);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.virtual-card-box {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.virtual-card-box::after {
+  content: 'PLACE PHYSICAL CARD HERE';
+  text-align: center;
+  opacity: 0.6;
+  font-size: 8px;
+}
+
+.cal-camera-container {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 16px;
+}
+
+.cal-camera-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1); /* Mirror view */
+}
+
+.camera-guide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-guide-circle {
+  width: 100px;
+  height: 100px;
+  border: 2px solid var(--lk-secondary);
+  border-radius: 50%;
+  position: relative;
+}
+
+/* ==========================================
+   THE ARCADE GAME (GAPCHASE)
+   ========================================== */
+.game-screen {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background: var(--game-bg);
+  color: var(--game-text);
+  position: relative;
+}
+
+.game-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+}
+
+.game-hud-score {
+  color: var(--game-yellow);
+  font-weight: 700;
+}
+
+.game-hud-trials {
+  color: var(--game-text);
+  opacity: 0.8;
+}
+
+.game-canvas-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.target-wrapper {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
+}
+
+.target-landolt-c {
+  fill: none;
+  stroke: var(--game-primary);
+  stroke-linecap: round;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.game-controls-overlay {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.d-pad-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease;
+}
+
+.d-pad-btn:hover {
+  background: var(--game-primary);
+  color: var(--game-bg);
+  border-color: var(--game-primary);
+}
+
+.d-pad-btn:active {
+  transform: scale(0.95);
+}
+
+/* Tempo Countdown Bar */
+.tempo-bar-container {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.tempo-bar-fill {
+  height: 100%;
+  background: var(--game-accent);
+  transition: width 0.1s linear;
+}
+
+/* Handover Screen */
+.handover-screen {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  background: var(--lk-primary);
+  color: white;
+}
+
+.handover-icon {
+  font-size: 60px;
+  margin-bottom: 24px;
+  animation: bounce 2s infinite;
+}
+
+.handover-screen h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--lk-secondary);
+}
+
+.handover-screen p {
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.8;
+  margin-bottom: 30px;
+}
+
+.glasses-checkbox {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Child Completion */
+.game-over-screen {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  background: var(--game-bg);
+  color: white;
+}
+
+.arcade-trophy {
+  font-size: 70px;
+  margin-bottom: 20px;
+  animation: shine 1.5s infinite;
+}
+
+.game-over-screen h2 {
+  font-size: 32px;
+  font-family: 'Space Mono', monospace;
+  color: var(--game-yellow);
+  margin-bottom: 12px;
+}
+
+.game-over-stats {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.game-over-stat-box {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-over-stat-box label {
+  display: block;
+  font-size: 10px;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.game-over-stat-box span {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Space Mono', monospace;
+}
+
+/* Pause Cheat Screen */
+.cheat-pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 24, 36, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 1001;
+  padding: 24px;
+  animation: fadeIn 0.2s ease;
+}
+
+.cheat-pause-overlay .icon {
+  font-size: 60px;
+  margin-bottom: 16px;
+  color: var(--game-yellow);
+  animation: wiggle 0.5s infinite alternate;
+}
+
+.cheat-pause-overlay h3 {
+  font-size: 24px;
+  margin-bottom: 8px;
+  font-family: 'Space Mono', monospace;
+}
+
+.cheat-pause-overlay p {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   PARENT RESULT DETAIL SCREEN (D3)
+   ========================================== */
+.parent-result-screen {
+  padding: 24px;
+  background: white;
+  color: var(--lk-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.parent-result-header {
+  border-bottom: 1px solid var(--lk-border);
+  padding-bottom: 16px;
+}
+
+.parent-result-header h2 {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.verdict-banner {
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.verdict-banner.refer { background-color: rgba(255, 71, 87, 0.1); border-left: 4px solid var(--lk-accent); }
+.verdict-banner.monitor { background-color: rgba(255, 165, 2, 0.1); border-left: 4px solid var(--lk-warning); }
+.verdict-banner.clear { background-color: rgba(46, 213, 115, 0.1); border-left: 4px solid var(--lk-success); }
+.verdict-banner.enrol { background-color: rgba(0, 186, 198, 0.1); border-left: 4px solid var(--lk-secondary); }
+
+.verdict-title {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.verdict-desc {
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--lk-text-main);
+}
+
+.comparison-box {
+  background: var(--lk-bg-light);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  text-align: center;
+}
+
+.comp-item {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--lk-border);
+}
+
+.comp-item label {
+  display: block;
+  font-size: 11px;
+  color: var(--lk-text-sub);
+  margin-bottom: 2px;
+}
+
+.comp-item span {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.clinical-note {
+  font-size: 12px;
+  background: var(--lk-bg-light);
+  padding: 12px;
+  border-radius: 12px;
+  color: var(--lk-text-sub);
+  line-height: 1.5;
+  border-left: 3px solid var(--lk-primary);
+}
+
+/* ==========================================
+   ANIMATIONS & MISC
+   ========================================== */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shine {
+  0% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.05); filter: brightness(1.2); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(-5deg); }
+  100% { transform: rotate(5deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.custom-button {
+  border: none;
+  background: var(--lk-secondary);
+  color: #000c24;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.custom-button:hover {
+  opacity: 0.9;
+}
+
+/* Redesigned Lenskart App Layout (matching screenshot) */
+.lk-green-banner {
+  background-color: #0b6623; /* Forest Green */
+  color: white;
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lk-logo-header {
+  padding: 12px 16px 4px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+}
+
+.lk-gold-pill {
+  background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+  color: #000c24;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.lk-search-container {
+  padding: 8px 16px;
+  background: white;
+}
+
+.lk-search-box {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.lk-search-box input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--lk-text-main);
+}
+
+.lk-timer-banner {
+  background: #000;
+  color: #fff;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  text-align: center;
+  padding: 6px 12px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Duolingo style Vision Check widget card on Home */
+.duo-widget-card {
+  margin: 16px;
+  background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+  border: 2px solid #a855f7;
+  border-radius: 20px;
+  padding: 16px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.duo-widget-card:hover {
+  transform: translateY(-2px);
+}
+
+.duo-widget-badge {
+  background: #a855f7;
+  color: white;
+  font-size: 9px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.duo-widget-streak {
+  font-size: 11px;
+  color: #c084fc;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+/* Bottom Navigation Bar */
+.lk-bottom-nav {
+  height: 60px;
+  border-top: 1px solid var(--lk-border);
+  background: white;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  position: absolute;
+  bottom: 12px; /* offset home bar */
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.lk-bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: var(--lk-text-sub);
+  font-size: 8.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lk-bottom-nav-item.active {
+  color: var(--lk-primary);
+}
+
+.lk-bottom-nav-item .icon {
+  font-size: 16px;
+}
+
+/* Celebratory Confetti & Badges for Child Milestones */
+.celebration-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spinning-trophy {
+  font-size: 64px;
+  animation: shine 2s infinite, float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.badge-unlocked-card {
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 12px;
+  padding: 10px 16px;
+  margin-top: 16px;
+  text-align: center;
+  animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from { box-shadow: 0 0 5px rgba(168, 85, 247, 0.2); }
+  to { box-shadow: 0 0 15px rgba(168, 85, 247, 0.5); }
+}
+
+/* Simulated Confetti pieces in CSS */
+.confetti-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(300px) rotate(360deg); opacity: 0; }
+}
+
+/* ========================================================
+   DUOLINGO-THEMED STYLES (MATCHING SCREENSHOTS)
+   ======================================================== */
+
+/* Widget Installer Screen Styles */
+.duo-install-screen {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.duo-install-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #3f3f46;
+  line-height: 1.3;
+}
+
+.duo-phone-preview {
+  width: 250px;
+  height: 380px;
+  background: #e0f2fe; /* Light blue phone bg */
+  border: 1px solid #bae6fd;
+  border-radius: 36px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  margin: 16px 0;
+  position: relative;
+  justify-content: center;
+}
+
+.duo-mock-widget-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.duo-mock-app-icon {
+  width: 44px;
+  height: 44px;
+  background: #cbd5e1;
+  border-radius: 12px;
+  opacity: 0.6;
+}
+
+.duo-mock-widget-preview {
+  grid-column: span 1;
+  height: 100px;
+  background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+  border: 2px solid #a855f7;
+  border-radius: 20px;
+  padding: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.duo-mock-widget-preview .streak {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ff9f43;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Cute Duolingo Mascot & Speech Bubble Styles in PWA */
+.duo-pwa-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--game-bg);
+  border-bottom: 2px solid #232d3f;
+}
+
+.duo-close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #475569;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.duo-energy-pill {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #38bdf8;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.duo-character-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0;
+  padding: 0 8px;
+}
+
+.duo-character-speech-bubble {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #334155;
+  font-weight: bold;
+  line-height: 1.4;
+  position: relative;
+  flex: 1;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.duo-character-speech-bubble::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-left: 2px solid #e2e8f0;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.duo-mascot-avatar {
+  font-size: 40px;
+  animation: gentleBounce 2s infinite alternate;
+}
+
+@keyframes gentleBounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-4px); }
+}
+
+/* Duolingo style shapes card buttons deck */
+.duo-shape-deck {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.duo-shape-card {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-bottom: 5px solid #cbd5e1; /* flat 3D click effect */
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.duo-shape-card:active {
+  border-bottom-width: 2px;
+  transform: translateY(3px);
+}
+
+.duo-shape-card.heart { border-color: #ffcccb; color: #ff4757; }
+.duo-shape-card.heart:active { border-bottom-color: #ff8a88; }
+
+.duo-shape-card.house { border-color: #bee3f8; color: #3182ce; }
+.duo-shape-card.house:active { border-bottom-color: #90cdf4; }
+
+.duo-shape-card.circle { border-color: #c6f6d5; color: #38a169; }
+.duo-shape-card.circle:active { border-bottom-color: #9ae6b4; }
+
+.duo-shape-card.square { border-color: #feebc8; color: #dd6b20; }
+.duo-shape-card.square:active { border-bottom-color: #fbd38d; }
+
+.duo-shape-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* ========================================================
+   ANDROID HOMESCREEN & SYSTEM DIALOG DIALOGS
+   ======================================================== */
+
+/* Android System Dialog overlay (Screenshot 2 Match) */
+.duo-sys-dialog-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.duo-sys-dialog {
+  background: white;
+  width: 90%;
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  animation: scaleUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #334155;
+  text-align: center;
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.duo-sys-dialog-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.duo-sys-dialog-subtitle {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.duo-sys-widget-icon-box {
+  width: 130px;
+  height: 65px;
+  background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+  border: 1.5px solid #a855f7;
+  border-radius: 12px;
+  margin: 0 auto 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 8px;
+  color: white;
+}
+
+.duo-sys-dialog-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.duo-sys-btn {
+  background: none;
+  border: none;
+  color: #0ea5e9; /* Light blue */
+  cursor: pointer;
+  padding: 6px 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.duo-sys-btn.cancel {
+  color: #64748b;
+}
+
+/* Android Home Screen Mock (Screenshot 4 Match) */
+.duo-homescreen-view {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 16px 70px 16px; /* spacing for status bar and bottom nav */
+}
+
+/* Sunset mountain gradient wallpaper in pure CSS */
+.duo-homescreen-wallpaper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #1e293b 0%, #7c2d12 40%, #ea580c 70%, #f97316 100%);
+  z-index: 1;
+}
+
+/* SVG Mountain overlay peak */
+.duo-mountain-svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65%;
+  z-index: 2;
+  opacity: 0.85;
+}
+
+.duo-homescreen-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+.duo-homescreen-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.duo-home-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.duo-home-app-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+.duo-home-app-label {
+  font-size: 8px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  font-weight: bold;
+  text-align: center;
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* White theme 2x1 Duolingo Widget */
+.duo-white-widget {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 12px 14px;
+  color: #334155;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin: 12px 0;
+  width: 100%;
+}
+
+.duo-white-widget:hover {
+  transform: scale(1.02);
+}
+
+.duo-white-widget .streak-badge {
+  background: #ffecd2;
+  color: #dd6b20;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Bottom dock */
+.duo-home-dock {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Emotional mustache character holding roses (Screenshot 5 Match) */
+.duo-character-roses {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.duo-tutorial-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  color: white;
+  text-align: center;
+}
+
+/* Shop by Category - Lenskart Premium Aesthetics */
+.lk-category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.lk-cat-img-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  box-shadow: inset 0 -4px 8px rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.06);
+  background: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.lk-category-card:hover .lk-cat-img-box {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+.lk-cat-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #000042;
+  text-align: center;
+}
+
