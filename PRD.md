@@ -83,7 +83,7 @@ Aarav optimises for concealment. Divya optimises for certainty. His coping quiet
 
 **Shape Chase** is a sixty-second game the child plays on a PWA. Under it is a shape-matching acuity staircase (pediatric Lea Symbols: **Heart ❤️, House 🏠, Circle 🟢, Square 🟨**). 
 
-The parent clicks a generic Lenskart Home banner ad, grants consent, calibrates the screen, and approves a native Android system widget installation. The child launches the game from the **white Duolingo-style 2x1 desktop widget**. Results sync securely to Lenskart and are delivered directly within the parent's Lenskart app dashboard, bypassing any third-party messaging risks (such as WhatsApp preview leaks).
+The parent clicks a generic Lenskart Home banner ad, grants consent, and installs a mock home screen widget. The child launches the game from the **white Duolingo-style 2x1 desktop widget** and completes the screen camera calibration (face alignment) right before beginning the game. Results sync securely to Lenskart and are delivered directly within the parent's Lenskart app dashboard, bypassing any third-party messaging risks (such as WhatsApp preview leaks).
 
 **Three design decisions carry the product:**
 
@@ -113,7 +113,7 @@ The parent clicks a generic Lenskart Home banner ad, grants consent, calibrates 
 **In:** 
 * Generic, unpersonalized Lenskart marketing banner ad (*"Kids Vision Check at Home"*)
 * Parental consent screen (bypassing handover options to reduce friction)
-* Screen camera calibration
+* Screen camera calibration (relocated to the start of the child's PWA gameplay journey)
 * Android widget installation flow (with native confirmation pop-ups)
 * 2x1 white home screen launcher widget
 * Shape Chase game loop (pediatric shape cards, wiggling Specsy Dino 🦖 mascot guides)
