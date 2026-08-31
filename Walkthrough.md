@@ -44,12 +44,15 @@ The application is served live at **[http://localhost:5173/](http://localhost:51
 You can test the prototype in two ways:
 * **Standalone HTML File**: Double-click [lenskart_vision_check.html](file:///Users/mayankarora/Documents/Portfolio/lenskart_vision_check.html) at the root of your workspace to open and run the entire mockup offline directly in any browser!
 * **Local Development Server**: Open **[http://localhost:5173/](http://localhost:5173/)** (HMR enabled).
-2. **Setup Phase**:
+2. **Setup Phase (Parent)**:
    - In the **📱 Lenskart App** view, click **"Start 60s Check"** inside the minimalist dark banner ad.
-   - Complete consent, calibration, and mock widget installations.
+   - Complete consent and mock widget installations (no camera calibration in parent setup flow).
    - On the setup complete screen, click the new **"Go to Homepage"** button.
-   - Observe the Lenskart home page: it now displays the blue **"Awaiting Play"** status card indicating that the setup is ready and waiting for the child!
-3. **Child Gameplay & Celebration**:
+   - Observe the Lenskart home page: it now displays the dark slate **"Awaiting Play"** banner indicating that the setup is ready and waiting for the child!
+3. **Child Gameplay & Calibration**:
    - Toggle to **`🏡 Home Screen`** and tap the **white 2x1 Shape Chase widget** to start.
+   - In the child's PWA startup, click **"Play Game (Shape Chase)"**.
+   - Note that the camera calibration screen appears next (the child aligns their face with the webcam to lock in target distance!).
+   - Tap **"Lock in Position"** to initiate the gameplay.
    - Notice the gameplay has no double-point streak alerts, keeping it simple.
    - Complete 12 rounds to check the emotional rose-holding mustache man celebration.
