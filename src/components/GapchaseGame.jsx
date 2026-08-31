@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 // Standard pediatric symbols for kids vision checking (Lea Symbols)
-const SHAPES = ["HEART", "HOUSE", "CIRCLE", "SQUARE"];
+const SHAPES = ["HEART", "HOUSE", "CIRCLE", "SQUARE", "STAR", "TRIANGLE", "MOON", "BALLOON"];
 const LADDER = [100, 80, 63, 50, 40, 32, 25, 20];
 
 // Dynamic Speeches from Specsy Dino (Duolingo mascot)
@@ -25,6 +25,34 @@ const INCORRECT_SPEECHES = [
   "Nice try! You've got this! ⭐",
   "Almost! Keep chasing the shapes! ⚡"
 ];
+
+const getShapeEmoji = (shape) => {
+  switch (shape) {
+    case "HEART": return "❤️";
+    case "HOUSE": return "🏠";
+    case "CIRCLE": return "🟢";
+    case "SQUARE": return "🟨";
+    case "STAR": return "⭐";
+    case "TRIANGLE": return "🔺";
+    case "MOON": return "🌙";
+    case "BALLOON": return "🎈";
+    default: return "❓";
+  }
+};
+
+const getShapeClass = (shape) => {
+  switch (shape) {
+    case "HEART": return "heart";
+    case "HOUSE": return "house";
+    case "CIRCLE": return "circle";
+    case "SQUARE": return "square";
+    case "STAR": return "star";
+    case "TRIANGLE": return "triangle";
+    case "MOON": return "moon";
+    case "BALLOON": return "balloon";
+    default: return "default";
+  }
+};
 
 export default function GapchaseGame({
   pxPerMm,
@@ -50,6 +78,11 @@ export default function GapchaseGame({
   // Game states: 'PLAYING', 'FEEDBACK', 'RETRY_PROMPT', 'RETRYING', 'BONUS_ALERT', 'BONUS_PLAYING', 'CONFIRM_QUIT'
   const [gameState, setGameState] = useState("PLAYING");
   const [showTutorial, setShowTutorial] = useState(true);
+  const [floatingPoints, setFloatingPoints] = useState([]);
+  const [activeOptions, setActiveOptions] = useState([]);
+  const [cameraStream, setCameraStream] = useState(null);
+  const [cameraError, setCameraError] = useState(false);
+  const videoRef = useRef(null);
   const [feedbackMsg, setFeedbackMsg] = useState("");
   const [feedbackColor, setFeedbackColor] = useState("");
   const [pendingNextAction, setPendingNextAction] = useState(null);
@@ -80,6 +113,49 @@ export default function GapchaseGame({
       }
     }
   }, [trialNum, combo, gameState]);
+
+  const buildOptions = (correctShp) => {
+    const distractors = SHAPES.filter((s) => s !== correctShp);
+    const chosenDistractors = distractors.sort(() => 0.5 - Math.random()).slice(0, 3);
+    const options = [correctShp, ...chosenDistractors].sort(() => 0.5 - Math.random());
+    setActiveOptions(options);
+  };
+
+  // Mount/initialize the options list for the first trial shape
+  useEffect(() => {
+    buildOptions(targetShape);
+  }, []);
+
+  // Set up camera access when gameplay starts (walkthrough tutorial closes)
+  useEffect(() => {
+    if (showTutorial) return;
+
+    let activeStream = null;
+    const startCamera = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "user" }
+        });
+        activeStream = stream;
+        setCameraStream(stream);
+        setCameraError(false);
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+      } catch (err) {
+        console.warn("Gameplay webcam access denied/unavailable", err);
+        setCameraError(true);
+      }
+    };
+
+    startCamera();
+
+    return () => {
+      if (activeStream) {
+        activeStream.getTracks().forEach(track => track.stop());
+      }
+    };
+  }, [showTutorial]);
 
   // Check anti-cheat distance guard via Mascot speech (Duolingo styled alerts)
   const isTooClose = cheatDistanceMultiplier > 1.15;
@@ -119,6 +195,7 @@ export default function GapchaseGame({
   const startNewTrial = (nextRung, nextState = "PLAYING") => {
     const shp = getNextShape();
     setTargetShape(shp);
+    buildOptions(shp);
     setLastShapes((prev) => [...prev.slice(-2), shp]);
     setGameState(nextState);
     setTimeLeft(4000);
@@ -132,20 +209,30 @@ export default function GapchaseGame({
       if (isTooClose || isTooFar || showTutorial) return; // lock controls on warning/tutorial
       
       let response = null;
-      if (e.key === "ArrowLeft") response = "HEART";
-      else if (e.key === "ArrowUp") response = "HOUSE";
-      else if (e.key === "ArrowRight") response = "CIRCLE";
-      else if (e.key === "ArrowDown") response = "SQUARE";
+      let btnId = null;
+      if (e.key === "ArrowLeft" && activeOptions[0]) {
+        response = activeOptions[0];
+        btnId = "shape-opt-0";
+      } else if (e.key === "ArrowUp" && activeOptions[1]) {
+        response = activeOptions[1];
+        btnId = "shape-opt-1";
+      } else if (e.key === "ArrowRight" && activeOptions[2]) {
+        response = activeOptions[2];
+        btnId = "shape-opt-2";
+      } else if (e.key === "ArrowDown" && activeOptions[3]) {
+        response = activeOptions[3];
+        btnId = "shape-opt-3";
+      }
       
       if (response) {
         e.preventDefault();
-        handleResponse(response);
+        handleResponse(response, btnId);
       }
     };
     
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [gameState, targetShape, rungIndex, trialNum, score, combo, isTooClose, isTooFar]);
+  }, [gameState, targetShape, rungIndex, trialNum, score, combo, isTooClose, isTooFar, activeOptions]);
 
   // Timer loop
   useEffect(() => {
@@ -165,12 +252,25 @@ export default function GapchaseGame({
     return () => clearInterval(timerRef.current);
   }, [gameState, trialNum, isTooClose, isTooFar]);
 
-  const handleResponse = (response) => {
+  const handleResponse = (response, btnId = null) => {
     clearInterval(timerRef.current);
     
     const reactionTime = Date.now() - startTimeRef.current;
     const isCorrect = response === targetShape;
     const isSuspect = reactionTime < 250 || suspectFastSimulated;
+
+    if (isCorrect && response) {
+      const baseScore = (rungIndex + 1) * 100;
+      const speedBonus = reactionTime < 1000 ? 50 : 0;
+      const calculatedPoints = Math.round((baseScore + speedBonus) * (1 + Math.floor((combo + 1) / 3) * 0.5));
+      const targetBtn = btnId || `shape-${response.toLowerCase()}`;
+      const id = Date.now() + Math.random();
+      
+      setFloatingPoints((prev) => [...prev, { id, btnId: targetBtn, text: `+${calculatedPoints} pts` }]);
+      setTimeout(() => {
+        setFloatingPoints((prev) => prev.filter((p) => p.id !== id));
+      }, 1200);
+    }
     
     if (isSuspect && response) {
       setSuspectFastCount(prev => prev + 1);
@@ -410,7 +510,6 @@ export default function GapchaseGame({
           />
         );
       case "SQUARE":
-      default:
         return (
           <rect 
             x="15" 
@@ -423,6 +522,57 @@ export default function GapchaseGame({
             fill="none" 
             strokeLinejoin="round" 
           />
+        );
+      case "STAR":
+        return (
+          <path 
+            d="M50,15 L62,38 L88,40 L68,57 L74,83 L50,69 L26,83 L32,57 L12,40 L38,38 Z" 
+            stroke="#d97706" 
+            strokeWidth="10" 
+            fill="none" 
+            strokeLinejoin="round" 
+          />
+        );
+      case "TRIANGLE":
+        return (
+          <polygon 
+            points="50,15 15,80 85,80" 
+            stroke="#dc2626" 
+            strokeWidth="10" 
+            fill="none" 
+            strokeLinejoin="round" 
+          />
+        );
+      case "MOON":
+        return (
+          <path 
+            d="M65,15 C45,15 30,30 30,50 C30,70 45,85 65,85 C50,85 40,75 40,50 C40,25 50,15 65,15 Z" 
+            stroke="#7c3aed" 
+            strokeWidth="10" 
+            fill="none" 
+            strokeLinejoin="round" 
+          />
+        );
+      case "BALLOON":
+      default:
+        return (
+          <g>
+            <ellipse 
+              cx="50" 
+              cy="45" 
+              rx="25" 
+              ry="30" 
+              stroke="#0284c7" 
+              strokeWidth="10" 
+              fill="none" 
+            />
+            <path 
+              d="M50,75 L50,92 C50,92 46,95 50,98" 
+              stroke="#0284c7" 
+              strokeWidth="6" 
+              fill="none" 
+            />
+          </g>
         );
     }
   };
@@ -450,6 +600,23 @@ export default function GapchaseGame({
           <span>⚡</span>
           <span>∞</span>
         </div>
+
+        {/* Circular camera preview in PWA header */}
+        {!showTutorial && (
+          <div className="duo-pwa-camera-container" title="Distance Guard Active">
+            {cameraError ? (
+              <div className="duo-pwa-camera-placeholder">🔒</div>
+            ) : (
+              <video 
+                ref={videoRef} 
+                className="duo-pwa-camera-video" 
+                autoPlay 
+                playsInline 
+                muted 
+              />
+            )}
+          </div>
+        )}
       </div>
 
       {/* Concept tag */}
@@ -647,43 +814,32 @@ export default function GapchaseGame({
         </div>
       )}
 
-      {/* 4. DUOLINGO SHAPES DECK (Heart, House, Circle, Square) */}
-      <div className="duo-shape-deck">
-        <button 
-          className="duo-shape-card heart" 
-          disabled={gameState !== "PLAYING" && gameState !== "RETRYING" && gameState !== "BONUS_PLAYING"}
-          onClick={() => handleResponse("HEART")}
-        >
-          <span style={{ fontSize: "24px" }}>❤️</span>
-          <span className="duo-shape-label">HEART</span>
-        </button>
-
-        <button 
-          className="duo-shape-card house" 
-          disabled={gameState !== "PLAYING" && gameState !== "RETRYING" && gameState !== "BONUS_PLAYING"}
-          onClick={() => handleResponse("HOUSE")}
-        >
-          <span style={{ fontSize: "24px" }}>🏠</span>
-          <span className="duo-shape-label">HOUSE</span>
-        </button>
-
-        <button 
-          className="duo-shape-card circle" 
-          disabled={gameState !== "PLAYING" && gameState !== "RETRYING" && gameState !== "BONUS_PLAYING"}
-          onClick={() => handleResponse("CIRCLE")}
-        >
-          <span style={{ fontSize: "24px" }}>🟢</span>
-          <span className="duo-shape-label">CIRCLE</span>
-        </button>
-
-        <button 
-          className="duo-shape-card square" 
-          disabled={gameState !== "PLAYING" && gameState !== "RETRYING" && gameState !== "BONUS_PLAYING"}
-          onClick={() => handleResponse("SQUARE")}
-        >
-          <span style={{ fontSize: "24px" }}>🟨</span>
-          <span className="duo-shape-label">SQUARE</span>
-        </button>
+      <div className="duo-shape-deck" style={{ position: "relative" }}>
+        {(activeOptions.length > 0 ? activeOptions : ["HEART", "HOUSE", "CIRCLE", "SQUARE"]).map((shape, index) => {
+          const btnId = `shape-opt-${index}`;
+          const shapeClass = getShapeClass(shape);
+          const shapeEmoji = getShapeEmoji(shape);
+          
+          return (
+            <button 
+              key={shape}
+              id={btnId}
+              className={`duo-shape-card ${shapeClass}`}
+              disabled={gameState !== "PLAYING" && gameState !== "RETRYING" && gameState !== "BONUS_PLAYING"}
+              onClick={() => handleResponse(shape, btnId)}
+              style={{ position: "relative" }}
+            >
+              {/* Floating points popups inside this button card */}
+              {floatingPoints.filter(p => p.btnId === btnId).map(p => (
+                <span key={p.id} className="duo-floating-point" style={{ top: "-30px", left: "15%" }}>
+                  {p.text}
+                </span>
+              ))}
+              <span style={{ fontSize: "24px" }}>{shapeEmoji}</span>
+              <span className="duo-shape-label">{shape}</span>
+            </button>
+          );
+        })}
       </div>
 
       {/* 5. FIRST TIME PLAYER EXPLANATION / WALKTHROUGH */}
