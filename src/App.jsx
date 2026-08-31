@@ -145,13 +145,14 @@ export default function App() {
       distanceVerified: data.distanceVerified
     });
     
-    setSyncStatus("AWAITING_PLAY");
-    setParentScreen("ADD_WIDGET"); // intermediate widget installer screen
+    // Calibration happens during PWA child gameplay now, so route child straight to GAME
+    setChildScreen("GAME");
   };
 
   const handleAddWidgetResolve = (installed) => {
     logAnalyticsEvent("vision_check_widget_install_resolved", { installed });
     setWidgetInstalled(installed);
+    setSyncStatus("AWAITING_PLAY"); // Setup completed, awaiting child play
     setParentScreen("AWAITING_PLAY");
   };
 

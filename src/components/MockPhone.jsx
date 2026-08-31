@@ -63,7 +63,7 @@ export default function MockPhone({
   const handleConsentSubmit = () => {
     if (!allConsented) return;
     logAnalyticsEvent("vision_check_consent_granted", { consent_version: "DPDP_V1.1" });
-    setScreen("CALIBRATION");
+    setScreen("ADD_WIDGET");
   };
 
   const handlePhoneSelectSubmit = () => {
@@ -92,7 +92,7 @@ export default function MockPhone({
       glasses_worn: glassesWorn,
       px_per_mm: pxPerMm
     });
-    setScreen("GAME");
+    setScreen("CALIBRATION");
   };
 
   // Determine Arcade Rank (C3)
@@ -438,15 +438,7 @@ export default function MockPhone({
 
 
 
-            {/* LENSKART SCREEN: CALIBRATION */}
-            {screen === "CALIBRATION" && (
-              <CameraFeed 
-                onCalibrateComplete={onCalibrateComplete}
-                pxPerMm={pxPerMm}
-                setPxPerMm={setPxPerMm}
-                logEvent={logAnalyticsEvent}
-              />
-            )}
+
 
             {/* LENSKART SCREEN: ADD_WIDGET (DUOLINGO STYLED) */}
             {screen === "ADD_WIDGET" && (
@@ -697,6 +689,18 @@ export default function MockPhone({
                 >
                   Play Game (Shape Chase)
                 </button>
+              </div>
+            )}
+
+            {/* PWA SCREEN: CALIBRATION (webcam face alignment before play) */}
+            {syncStatus === "AWAITING_PLAY" && screen === "CALIBRATION" && (
+              <div style={{ background: "white", padding: "16px", height: "100%", display: "flex", flexDirection: "column" }}>
+                <CameraFeed 
+                  onCalibrateComplete={onCalibrateComplete}
+                  pxPerMm={pxPerMm}
+                  setPxPerMm={setPxPerMm}
+                  logEvent={logAnalyticsEvent}
+                />
               </div>
             )}
 
