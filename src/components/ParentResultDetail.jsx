@@ -68,12 +68,12 @@ export default function ParentResultDetail({
         fontSize: "11px",
         background: "rgba(245, 158, 11, 0.08)",
         border: "1px solid rgba(245, 158, 11, 0.3)",
-        borderRadius: "10px",
+        borderRadius: "8px",
         padding: "10px 12px",
         color: "#b45309",
         lineHeight: "1.4"
       }}>
-        <strong>⚠️ Home Screening Note:</strong> This is a home screening helper to track vision shifts over time, not a clinical diagnosis.
+        <strong>Home Screening Note:</strong> This is a home screening helper to track vision shifts over time, not a clinical diagnosis.
       </div>
 
       {/* Verdict Banner */}
@@ -115,39 +115,24 @@ export default function ParentResultDetail({
           <div style={{ fontSize: "12px", marginTop: "12px", color: "var(--lk-text-main)", textAlign: "center", fontWeight: "500" }}>
             {result?.deltaLines > 0 ? (
               <span style={{ color: "var(--lk-accent)" }}>
-                📈 Shifted by {result.deltaLines} {result.deltaLines === 1 ? "line" : "lines"} finer compared to baseline.
+                Shifted by {result.deltaLines} {result.deltaLines === 1 ? "line" : "lines"} finer compared to baseline.
               </span>
             ) : result?.deltaLines < 0 ? (
               <span style={{ color: "var(--lk-accent)" }}>
-                📉 Vision indicates a decline of {Math.abs(result.deltaLines)} {Math.abs(result.deltaLines) === 1 ? "line" : "lines"} on Snellen chart.
+                Vision indicates a decline of {Math.abs(result.deltaLines)} {Math.abs(result.deltaLines) === 1 ? "line" : "lines"} on Snellen chart.
               </span>
             ) : (
               <span style={{ color: "var(--lk-success)" }}>
-                🎯 Vision is stable and matches target perfectly.
+                Vision is stable and matches target perfectly.
               </span>
             )}
           </div>
         )}
       </div>
 
-      {/* Track Explanations (D3) */}
-      {track === "corrected" && (
-        <div style={{
-          fontSize: "11px",
-          background: "rgba(0, 186, 198, 0.06)",
-          padding: "10px 12px",
-          borderRadius: "10px",
-          border: "1px solid rgba(0, 186, 198, 0.2)",
-          color: "var(--lk-primary)",
-          lineHeight: "1.4"
-        }}>
-          <strong>👓 Corrected Vision Check:</strong> Run with glasses <strong>ON</strong>. Shifts indicate prescription changes rather than naked vision changes.
-        </div>
-      )}
-
       {/* D3 Under-Correction Consensus Note */}
-      <div className="clinical-note" style={{ padding: "10px 12px", borderRadius: "10px" }}>
-        <strong style={{ fontSize: "11px", color: "var(--lk-primary)" }}>💡 Pediatric Advisory:</strong>
+      <div className="clinical-note" style={{ padding: "10px 12px", borderRadius: "8px" }}>
+        <strong style={{ fontSize: "11px", color: "var(--lk-primary)" }}>Pediatric Advisory:</strong>
         <p style={{ marginTop: "2px", fontSize: "11px", color: "var(--lk-text-sub)", lineHeight: "1.4" }}>
           Consensus indicates outdated lens powers can increase strain. Regular rechecks ensure full correction.
         </p>
@@ -156,7 +141,7 @@ export default function ParentResultDetail({
       {/* Conditions Box */}
       <div style={{
         background: "var(--lk-bg-light)",
-        borderRadius: "10px",
+        borderRadius: "8px",
         padding: "10px 12px",
         fontSize: "11px",
         color: "var(--lk-text-sub)",
@@ -180,7 +165,7 @@ export default function ParentResultDetail({
               {track === "unaware" ? (
                 <>
                   <button className="btn-primary" onClick={() => handleBook("home")}>
-                    🏠 Book Home Eye Test (Free)
+                    Book Free Home Eye Test
                   </button>
                   <div style={{
                     border: "1px solid var(--lk-border)",
@@ -192,7 +177,7 @@ export default function ParentResultDetail({
                       Or Visit Nearest Lenskart Store
                     </div>
                     <p style={{ fontSize: "11px", color: "var(--lk-text-sub)", margin: "4px 0 8px 0" }}>
-                      📍 MG Road Store (2.4 km) • Open until 9:00 PM • Next slot: Tomorrow 11:00 AM
+                      MG Road Store (2.4 km) • Open until 9:00 PM • Next slot: Tomorrow 11:00 AM
                     </p>
                     <button 
                       className="btn-primary" 
@@ -316,8 +301,7 @@ export default function ParentResultDetail({
           borderRadius: "16px",
           border: "1px solid var(--lk-border)"
         }}>
-          <div style={{ fontSize: "36px", marginBottom: "8px" }}>✅</div>
-          <h3 style={{ color: "var(--lk-primary)", marginBottom: "4px" }}>Booking Confirmed!</h3>
+          <h3 style={{ color: "var(--lk-primary)", marginBottom: "4px" }}>Booking Confirmed</h3>
           <p style={{ fontSize: "12px", color: "var(--lk-text-sub)", marginBottom: "16px", lineHeight: "1.4" }}>
             Your free {bookingMode === "home" ? "Home Eye Test" : "Store Optometrist Session"} is scheduled. 
             Details saved to your Lenskart account.
@@ -335,7 +319,7 @@ export default function ParentResultDetail({
               textAlign: "left",
               marginBottom: "12px"
             }}>
-              ⚠️ **Important:** Please remember to bring the glasses {childName} currently wears to this examination.
+              <strong>Important:</strong> Please remember to bring the glasses {childName} currently wears to this examination.
             </div>
           )}
 
@@ -350,7 +334,7 @@ export default function ParentResultDetail({
             lineHeight: "1.4",
             color: "var(--lk-text-main)"
           }}>
-            📋 **Lenskart Safety Rule:** Anyone under 18 arriving to replace a broken or scratched frame is mandatory re-tested before the order is taken, never fitted against a prescription on file.
+            <strong>Lenskart Safety Rule:</strong> Anyone under 18 arriving to replace a broken or scratched frame is mandatory re-tested before the order is taken, never fitted against a prescription on file.
           </div>
 
           <button 
