@@ -153,7 +153,6 @@ export default function App() {
     logAnalyticsEvent("vision_check_widget_install_resolved", { installed });
     setWidgetInstalled(installed);
     setSyncStatus("AWAITING_PLAY"); // Setup completed, awaiting child play
-    setParentScreen("AWAITING_PLAY");
   };
 
   // Game over handler - computes result class (D1)

@@ -74,7 +74,7 @@ export default function MockPhone({
   const handleConsentSubmit = () => {
     if (!allConsented) return;
     logAnalyticsEvent("vision_check_consent_granted", { consent_version: "DPDP_V1.1" });
-    setScreen("SETUP_LOADING");
+    setScreen("ADD_WIDGET");
   };
 
   const handlePhoneSelectSubmit = () => {
@@ -528,7 +528,10 @@ export default function MockPhone({
                     ADD WIDGET
                   </button>
                   <button 
-                    onClick={() => onAddWidgetResolve(false)}
+                    onClick={() => {
+                      onAddWidgetResolve(false);
+                      setScreen("SETUP_LOADING");
+                    }}
                     style={{
                       background: "none",
                       border: "none",
@@ -887,6 +890,7 @@ export default function MockPhone({
               <button className="duo-sys-btn" onClick={() => {
                 setShowSystemDialog(false);
                 onAddWidgetResolve(true);
+                setScreen("SETUP_LOADING");
               }}>
                 Add
               </button>
