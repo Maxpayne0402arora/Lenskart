@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CameraFeed from "./CameraFeed";
 
 export default function MockPhone({
