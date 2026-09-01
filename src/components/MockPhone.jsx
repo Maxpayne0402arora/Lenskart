@@ -41,6 +41,17 @@ export default function MockPhone({
   
   const allConsented = consent1 && consent2 && consent3 && consent4;
 
+  // Auto-redirect loader effect after parent consent/permission is granted
+  useEffect(() => {
+    if (screen === "SETUP_LOADING") {
+      const timer = setTimeout(() => {
+        onAddWidgetResolve(true); // marks syncStatus = "AWAITING_PLAY" & installs widget
+        setScreen("HOME"); // auto redirects parent to Lenskart Home!
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [screen]);
+
   const child = activePersona.child;
   const isCorrectedTrack = child.track === "corrected";
 
@@ -63,7 +74,7 @@ export default function MockPhone({
   const handleConsentSubmit = () => {
     if (!allConsented) return;
     logAnalyticsEvent("vision_check_consent_granted", { consent_version: "DPDP_V1.1" });
-    setScreen("ADD_WIDGET");
+    setScreen("SETUP_LOADING");
   };
 
   const handlePhoneSelectSubmit = () => {
@@ -439,6 +450,36 @@ export default function MockPhone({
 
 
 
+
+            {/* LENSKART SCREEN: SETUP_LOADING (2s auto-redirect loader) */}
+            {screen === "SETUP_LOADING" && (
+              <div style={{
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "#fff",
+                padding: "32px 24px",
+                textAlign: "center"
+              }}>
+                <div style={{
+                  width: "48px",
+                  height: "48px",
+                  border: "4px solid #e2e8f0",
+                  borderTop: "4px solid var(--lk-primary)",
+                  borderRadius: "50%",
+                  animation: "spin 1s linear infinite",
+                  marginBottom: "20px"
+                }} />
+                <h3 style={{ fontSize: "16px", fontWeight: "800", color: "var(--lk-primary)", marginBottom: "8px" }}>
+                  Permission Secured!
+                </h3>
+                <p style={{ fontSize: "12px", color: "var(--lk-text-sub)", lineHeight: "1.5" }}>
+                  Configuring Kids Vision Check and widget reminder... Redirecting you to Lenskart Home.
+                </p>
+              </div>
+            )}
 
             {/* LENSKART SCREEN: ADD_WIDGET (DUOLINGO STYLED) */}
             {screen === "ADD_WIDGET" && (

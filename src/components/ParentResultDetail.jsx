@@ -63,17 +63,17 @@ export default function ParentResultDetail({
         </span>
       </div>
 
-      {/* R4: Screening never diagnosis statement */}
+      {/* Screening Helper Callout */}
       <div style={{
         fontSize: "11px",
-        background: "rgba(255, 165, 0, 0.08)",
-        border: "1px solid rgba(255, 165, 0, 0.2)",
-        borderRadius: "8px",
-        padding: "10px",
-        color: "#d97706",
+        background: "rgba(245, 158, 11, 0.08)",
+        border: "1px solid rgba(245, 158, 11, 0.3)",
+        borderRadius: "10px",
+        padding: "10px 12px",
+        color: "#b45309",
         lineHeight: "1.4"
       }}>
-        ⚠️ **Important Screening Note:** This check is a screening helper taken at home, not a clinical diagnosis. It helps track change over time to flag when a professional look is appropriate.
+        <strong>⚠️ Home Screening Note:</strong> This is a home screening helper to track vision shifts over time, not a clinical diagnosis.
       </div>
 
       {/* Verdict Banner */}
@@ -133,41 +133,38 @@ export default function ParentResultDetail({
       {/* Track Explanations (D3) */}
       {track === "corrected" && (
         <div style={{
-          fontSize: "12px",
-          background: "rgba(0, 186, 198, 0.05)",
-          padding: "12px",
-          borderRadius: "12px",
-          border: "1px solid rgba(0, 186, 198, 0.15)",
-          color: "var(--lk-text-main)",
+          fontSize: "11px",
+          background: "rgba(0, 186, 198, 0.06)",
+          padding: "10px 12px",
+          borderRadius: "10px",
+          border: "1px solid rgba(0, 186, 198, 0.2)",
+          color: "var(--lk-primary)",
           lineHeight: "1.4"
         }}>
-          👓 **Corrected Vision Log:** Today's check was run with glasses **ON**. This means any variation indicates a potential shift in the child's prescription power, rather than a degradation of their naked eyesight.
+          <strong>👓 Corrected Vision Check:</strong> Run with glasses <strong>ON</strong>. Shifts indicate prescription changes rather than naked vision changes.
         </div>
       )}
 
       {/* D3 Under-Correction Consensus Note */}
-      <div className="clinical-note">
-        <strong>💡 Medical Advisory Note:</strong>
-        <p style={{ marginTop: "4px" }}>
-          Current pediatric ophthalmology consensus is that leaving a child under-corrected (wearing glasses too weak for their eyes) does not slow myopic progression, and can actually accelerate it. Regular adjustments to keep correction full are highly recommended.
+      <div className="clinical-note" style={{ padding: "10px 12px", borderRadius: "10px" }}>
+        <strong style={{ fontSize: "11px", color: "var(--lk-primary)" }}>💡 Pediatric Advisory:</strong>
+        <p style={{ marginTop: "2px", fontSize: "11px", color: "var(--lk-text-sub)", lineHeight: "1.4" }}>
+          Consensus indicates outdated lens powers can increase strain. Regular rechecks ensure full correction.
         </p>
       </div>
 
       {/* Conditions Box */}
       <div style={{
         background: "var(--lk-bg-light)",
-        borderRadius: "12px",
-        padding: "12px",
+        borderRadius: "10px",
+        padding: "10px 12px",
         fontSize: "11px",
-        color: "var(--lk-text-sub)"
+        color: "var(--lk-text-sub)",
+        display: "flex",
+        justifyContent: "space-between"
       }}>
-        <div style={{ fontWeight: "700", marginBottom: "4px", color: "var(--lk-text-main)" }}>
-          Screening Conditions Checklist:
-        </div>
-        <div>Distance mode: <strong>{result?.distanceVerified ? "Camera-verified (40cm)" : "Assumed (40cm fallback)"}</strong></div>
-        <div>Calibration scale: <strong>{result?.pxPerMm ? `${result.pxPerMm} px/mm` : "Default DPI"}</strong></div>
+        <div>Distance: <strong>{result?.distanceVerified ? "Camera 40cm" : "40cm Standard"}</strong></div>
         <div>Glasses Worn: <strong>{result?.glassesWorn ? "Yes" : "No"}</strong></div>
-        <div>Fast Clicks Filtered: <strong>{result?.suspectFast || 0} clicks under 250ms</strong></div>
       </div>
 
       {/* R5: NO COMMERCE. Directly offer Referral or Monitoring */}
