@@ -13,7 +13,6 @@
       --lk-card: #1e293b;
       --lk-border: rgba(255, 255, 255, 0.1);
       --lk-teal: #00bac6;
-      --lk-teal-glow: rgba(0, 186, 198, 0.15);
       --lk-gold: #fbbf24;
       --lk-red: #ef4444;
       --lk-text: #f8fafc;
@@ -31,21 +30,20 @@
       background: var(--lk-dark);
       color: var(--lk-text);
       line-height: 1.5;
-      padding: 40px 24px;
+      padding: 36px 24px;
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1000px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 32px;
+      gap: 28px;
     }
 
-    /* Header */
     .page-header {
       border-bottom: 1px solid var(--lk-border);
-      padding-bottom: 16px;
+      padding-bottom: 14px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
@@ -53,15 +51,10 @@
 
     .page-header h1 {
       font-family: 'Outfit', sans-serif;
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 800;
       color: #ffffff;
       letter-spacing: -0.5px;
-    }
-
-    .page-header p {
-      font-size: 13px;
-      color: var(--lk-subtext);
     }
 
     .tag-badge {
@@ -74,62 +67,60 @@
       border-radius: 4px;
     }
 
-    /* Block Titles */
     .block-label {
       font-family: 'Space Mono', monospace;
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       color: var(--lk-teal);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       display: block;
     }
 
     .block-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 800;
       color: #ffffff;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    /* Common Card Styling */
     .card {
       background: var(--lk-card);
       border: 1px solid var(--lk-border);
       border-radius: 12px;
-      padding: 24px;
+      padding: 20px;
     }
 
-    /* BLOCK 1: North Star (Heavy Visual Weight) */
+    /* BLOCK 1: North Star (Highest Visual Weight) */
     .north-star-block {
       background: linear-gradient(135deg, rgba(0, 186, 198, 0.08) 0%, rgba(30, 41, 59, 0.95) 100%);
       border: 2px solid var(--lk-teal);
       box-shadow: 0 10px 30px rgba(0, 186, 198, 0.1);
-      border-radius: 16px;
-      padding: 32px;
+      border-radius: 14px;
+      padding: 28px;
     }
 
     .north-star-metric {
       font-family: 'Outfit', sans-serif;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
       color: #ffffff;
       line-height: 1.3;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .north-star-desc {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--lk-subtext);
       background: rgba(15, 23, 42, 0.6);
-      padding: 16px;
+      padding: 14px;
       border-radius: 8px;
       border-left: 3px solid var(--lk-teal);
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
-    /* BLOCK 2 & 5: Tables */
+    /* BLOCK 2 & 5: Tables (Removed "If low look at" column) */
     .data-table {
       width: 100%;
       border-collapse: collapse;
@@ -143,12 +134,12 @@
       text-transform: uppercase;
       color: var(--lk-subtext);
       background: rgba(15, 23, 42, 0.6);
-      padding: 10px 12px;
+      padding: 10px 14px;
       border-bottom: 1px solid var(--lk-border);
     }
 
     .data-table td {
-      padding: 12px;
+      padding: 12px 14px;
       border-bottom: 1px solid var(--lk-border);
       color: var(--lk-text);
       vertical-align: top;
@@ -158,29 +149,13 @@
       border-bottom: none;
     }
 
-    .pill-leading {
-      color: var(--lk-teal);
-      font-weight: 700;
-      font-size: 11px;
-    }
+    .pill-leading { color: var(--lk-teal); font-weight: 700; font-size: 11px; }
+    .pill-lagging { color: var(--lk-gold); font-weight: 700; font-size: 11px; }
 
-    .pill-lagging {
-      color: var(--lk-gold);
-      font-weight: 700;
-      font-size: 11px;
-    }
-
-    .table-note {
-      font-size: 12px;
-      color: var(--lk-subtext);
-      margin-top: 12px;
-      font-style: italic;
-    }
-
-    /* BLOCK 3: Grid Cards */
+    /* BLOCK 3: Key Outcomes Grid (Concise 2 Cards) */
     .outcomes-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
 
@@ -203,24 +178,23 @@
       line-height: 1.5;
     }
 
-    /* BLOCK 4: Signal Quality (Heavy Visual Weight & Full Width) */
+    /* BLOCK 4: Signal Quality (Full Width & Highest Visual Weight) */
     .signal-quality-block {
       background: rgba(30, 41, 59, 0.8);
       border: 1px solid rgba(0, 186, 198, 0.4);
       border-top: 4px solid var(--lk-teal);
-      border-radius: 16px;
-      padding: 32px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      border-radius: 14px;
+      padding: 28px;
     }
 
     .signal-opening-banner {
       background: rgba(15, 23, 42, 0.8);
       border: 1px solid var(--lk-border);
-      padding: 16px;
+      padding: 14px;
       border-radius: 8px;
       font-size: 13px;
       color: var(--lk-text);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       line-height: 1.5;
     }
 
@@ -231,8 +205,8 @@
     .signal-cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 24px;
+      gap: 14px;
+      margin-bottom: 20px;
     }
 
     @media (max-width: 900px) {
@@ -243,7 +217,7 @@
       background: rgba(15, 23, 42, 0.5);
       border: 1px solid var(--lk-border);
       border-radius: 8px;
-      padding: 16px;
+      padding: 14px;
     }
 
     .signal-card-header {
@@ -262,29 +236,29 @@
       padding: 2px 6px;
       border-radius: 4px;
       display: inline-block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .signal-card-body {
       font-size: 12px;
       color: var(--lk-subtext);
-      line-height: 1.5;
+      line-height: 1.4;
     }
 
     .signal-subboxes {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 14px;
     }
 
     .subbox {
       background: rgba(15, 23, 42, 0.7);
       border: 1px solid var(--lk-border);
-      padding: 14px;
+      padding: 12px 14px;
       border-radius: 8px;
       font-size: 12px;
       color: var(--lk-subtext);
-      line-height: 1.5;
+      line-height: 1.4;
     }
 
     .subbox-title {
@@ -293,11 +267,11 @@
       margin-bottom: 4px;
     }
 
-    /* BLOCK 5: Two Columns */
+    /* BLOCK 5: Guardrails & Anti-Metric Grid */
     .grid-2col {
       display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 20px;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 16px;
     }
 
     .anti-metric-card {
@@ -313,7 +287,7 @@
       font-weight: 800;
       color: var(--lk-red);
       font-size: 14px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .anti-metric-body {
@@ -327,18 +301,18 @@
 
   <div class="container">
 
-    <!-- HEADER -->
+    <!-- EXECUTIVE HEADER -->
     <header class="page-header">
       <div>
         <h1>Vision Check for Kids — Success Metrics</h1>
-        <p>Lenskart Product Metrics Framework • Co-founder Review Edition</p>
+        <p>Lenskart Co-founder Review Edition</p>
       </div>
-      <span class="tag-badge">NO-EMOJI EXECUTIVE FORMAT</span>
+      <span class="tag-badge">EXECUTIVE SUMMARY</span>
     </header>
 
     <!-- BLOCK 1: NORTH STAR (HEAVY VISUAL WEIGHT) -->
     <section>
-      <span class="block-label">Block 1 — Primary Objective</span>
+      <span class="block-label">Block 1 — Primary Metric</span>
       <div class="north-star-block">
         <h2 class="block-title" style="margin-bottom: 8px; color: var(--lk-teal);">North Star Metric</h2>
         <div class="north-star-metric">
@@ -350,9 +324,9 @@
       </div>
     </section>
 
-    <!-- BLOCK 2: FUNNEL CONVERSION -->
+    <!-- BLOCK 2: FUNNEL CONVERSION (NO "IF LOW LOOK AT" COLUMN) -->
     <section>
-      <span class="block-label">Block 2 — Operational Flow</span>
+      <span class="block-label">Block 2 — Core Conversion Funnel</span>
       <h2 class="block-title">Funnel Conversion</h2>
       <div class="card" style="padding: 0; overflow: hidden;">
         <table class="data-table">
@@ -360,97 +334,61 @@
             <tr>
               <th>Stage</th>
               <th>Definition</th>
-              <th>If low, look at</th>
               <th>Type</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Entry → consent</strong></td>
-              <td>consent completed / entry shown</td>
-              <td>entry placement; consent over-asking</td>
+              <td><strong>Entry → Consent</strong></td>
+              <td>Consent completed / entry shown</td>
               <td><span class="pill-leading">Leading</span></td>
             </tr>
             <tr>
-              <td><strong>Consent → session start</strong></td>
-              <td>first target rendered / consent granted</td>
-              <td>camera permission; calibration drop-off</td>
+              <td><strong>Consent → Session Start</strong></td>
+              <td>First target rendered / consent granted</td>
               <td><span class="pill-leading">Leading</span></td>
             </tr>
             <tr>
-              <td><strong>Session start → valid completion</strong></td>
-              <td>completed and not voided / started</td>
-              <td>game length vs attention span; void reasons</td>
+              <td><strong>Session Start → Valid Completion</strong></td>
+              <td>Completed and not voided / started</td>
               <td><span class="pill-leading">Leading</span></td>
             </tr>
             <tr>
-              <td><strong>Valid completion → delivered</strong></td>
-              <td>WhatsApp accepted / valid completions</td>
-              <td>number verification; delivery infra</td>
+              <td><strong>REFER → Booked</strong></td>
+              <td>Bookings / REFER results</td>
               <td><span class="pill-leading">Leading</span></td>
             </tr>
             <tr>
-              <td><strong>Delivered → opened</strong></td>
-              <td>opened in 24h / delivered</td>
-              <td>message copy; the randomised delay</td>
-              <td><span class="pill-leading">Leading</span></td>
-            </tr>
-            <tr>
-              <td><strong>REFER → booked</strong></td>
-              <td>bookings / REFER results</td>
-              <td>result screen clarity; slot availability</td>
-              <td><span class="pill-leading">Leading</span></td>
-            </tr>
-            <tr>
-              <td><strong>Booked → attended</strong></td>
-              <td>attended / booked</td>
-              <td>lead time, reminders, home vs store</td>
+              <td><strong>Booked → Attended</strong></td>
+              <td>Attended / booked</td>
               <td><span class="pill-lagging">Lagging</span></td>
             </tr>
             <tr>
-              <td><strong>Attended → prescription changed</strong></td>
-              <td>power change issued / attended</td>
-              <td>the referral threshold — this row is precision by another name</td>
+              <td><strong>Attended → Prescription Changed</strong></td>
+              <td>Power change issued / attended</td>
               <td><span class="pill-lagging">Lagging</span></td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="table-note">
-        No targets set. Every number here would be invented. Baseline for four weeks, then set them. The guardrail triggers in block 5 are the exception — those are stop conditions, and one without a number never fires.
-      </p>
     </section>
 
-    <!-- BLOCK 3: OUTCOMES -->
+    <!-- BLOCK 3: KEY OUTCOMES (CONCISE 2 CARDS) -->
     <section>
-      <span class="block-label">Block 3 — Long-Term Business Impact</span>
+      <span class="block-label">Block 3 — Core Outcomes</span>
       <h2 class="block-title">Outcomes</h2>
       <div class="outcomes-grid">
         <div class="card">
           <div class="outcome-card-title">Prescription freshness</div>
           <div class="outcome-card-desc">
-            Share of under-18 prescriptions on file under 12 months old. The number this product exists to move, measurable from existing order data before a line ships.
+            Share of under-18 prescriptions on file under 12 months old. The key long-term metric this product exists to move, measurable directly from order data.
           </div>
         </div>
 
         <div class="card">
           <div class="outcome-card-title">Time to correction</div>
           <div class="outcome-card-desc">
-            Median days from session to glasses in the child's hands. Not to booking, not to test.
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="outcome-card-title">Monitoring loop retention</div>
-          <div class="outcome-card-desc">
-            Share of MONITOR results where the child plays again at the scheduled recheck. If low, the monitor branch is a polite way of dropping people.
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="outcome-card-title">Tier-2+ share of sessions</div>
-          <div class="outcome-card-desc">
-            If this only reaches metro parents on good phones, it isn't serving the market Lenskart is growing into. Screen calibration is the likely culprit.
+            Median days from initial screening session to glasses delivered in the child's hands.
           </div>
         </div>
       </div>
@@ -460,53 +398,53 @@
     <section>
       <span class="block-label">Block 4 — Diagnostic Reliability</span>
       <div class="signal-quality-block">
-        <h2 class="block-title" style="color: var(--lk-teal); font-size: 22px;">Signal Quality</h2>
+        <h2 class="block-title" style="color: var(--lk-teal); font-size: 20px;">Signal Quality</h2>
         
         <div class="signal-opening-banner">
-          <strong>Accuracy is the wrong metric.</strong> At ~15% prevalence, classifying every child CLEAR scores 85% accuracy and catches nobody. Precision, recall and NPV are tracked separately because they cost different amounts to obtain.
+          <strong>Accuracy is the wrong metric.</strong> At ~15% prevalence, classifying every child CLEAR scores 85% accuracy and catches nobody. Precision, recall, and NPV are tracked separately because they cost different amounts to obtain.
         </div>
 
         <div class="signal-cards-grid">
           <div class="signal-card">
-            <div class="signal-card-header">Precision (PPV) — free</div>
+            <div class="signal-card-header">Precision (PPV) — Free</div>
             <div class="signal-formula">TP / (TP + FP)</div>
             <div class="signal-card-body">
-              Of children referred, the share who genuinely needed correction. Every referred child walks into a store, so we get ground truth on all of them.
+              Of children referred, the share who genuinely needed correction. Ground truth obtained on all walk-ins.
             </div>
           </div>
 
           <div class="signal-card">
-            <div class="signal-card-header">Recall — has to be bought</div>
+            <div class="signal-card-header">Recall — Budgeted</div>
             <div class="signal-formula">TP / (TP + FN)</div>
             <div class="signal-card-body">
-              Cleared children never come in, so this is invisible by default. Each month, randomly sample a cohort of CLEAR children and offer a free in-store test regardless of result. Budgeted, not aspirational.
+              Measured by monthly random sampling of CLEAR children offered a free in-store test.
             </div>
           </div>
 
           <div class="signal-card">
-            <div class="signal-card-header">NPV — the safety number</div>
+            <div class="signal-card-header">NPV — Safety Floor</div>
             <div class="signal-formula">TN / (TN + FN)</div>
             <div class="signal-card-body">
-              The P0 guardrail in block 5 is 1 − NPV, so that trigger is the bar. No separate number, deliberately.
+              The safety floor. Directly ties to the P0 false negative guardrail (1 − NPV).
             </div>
           </div>
         </div>
 
         <div class="signal-subboxes">
           <div class="subbox">
-            <div class="subbox-title">Ground truth box</div>
-            "Needed correction" = the in-store refraction issued a new prescription or changed an existing one by ≥ 0.50 D in either eye. Fixed before launch so precision can't be improved by redefining a hit.
+            <div class="subbox-title">Ground Truth Standard</div>
+            "Needed correction" = in-store refraction issued a new prescription or changed existing power by ≥ 0.50 D in either eye.
           </div>
 
           <div class="subbox">
-            <div class="subbox-title">Test-retest box</div>
-            Same child, two sessions seven days apart, no clinical change expected. The spread between readings is what defines a meaningful change, so it must be measured before the MONITOR and REFER thresholds are set. Guessing a threshold and hoping reliability supports it is the failure mode.
+            <div class="subbox-title">Test-Retest Protocol</div>
+            Two sessions 7 days apart with no clinical change expected to establish baseline screening reliability before setting thresholds.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BLOCK 5: GUARDRAILS AND ANTI-METRIC -->
+    <!-- BLOCK 5: GUARDRAILS & ANTI-METRIC -->
     <section>
       <span class="block-label">Block 5 — Risk Control & Non-Negotiables</span>
       <h2 class="block-title">Guardrails & Anti-Metric</h2>
@@ -524,29 +462,19 @@
             </thead>
             <tbody>
               <tr>
-                <td><strong>False negatives (P0)</strong> — CLEAR children needing power change within 90 days</td>
+                <td><strong>False negatives (P0)</strong> — CLEAR needing power change in 90d</td>
                 <td><strong style="color: var(--lk-red);">&gt; 10% of CLEAR</strong></td>
-                <td>Pull the feature</td>
+                <td>Pull feature</td>
               </tr>
               <tr>
-                <td><strong>False positives</strong> — REFER results where store test finds no change needed</td>
+                <td><strong>False positives</strong> — REFER finding no power change</td>
                 <td><strong style="color: var(--lk-gold);">&gt; 40% of REFER</strong></td>
-                <td>Tighten the threshold. Guardrail on commercial drift — loosening REFER turns this into a footfall driver</td>
+                <td>Tighten threshold (prevents commercial drift)</td>
               </tr>
               <tr>
-                <td><strong>Child-facing leakage</strong> — clinical language reaching a child</td>
+                <td><strong>Child-facing leakage</strong> — Clinical terms shown to child</td>
                 <td><strong style="color: var(--lk-red);">Any instance</strong></td>
-                <td>P0 defect, not a metric</td>
-              </tr>
-              <tr>
-                <td><strong>Consent withdrawal</strong></td>
-                <td><strong>&gt; 5%</strong></td>
-                <td>Consent screen over-reaching, or delivery unwelcome</td>
-              </tr>
-              <tr>
-                <td><strong>Reminder opt-out</strong></td>
-                <td><strong>&gt; 20%</strong></td>
-                <td>Cadence is wrong</td>
+                <td>P0 defect</td>
               </tr>
             </tbody>
           </table>
@@ -555,13 +483,13 @@
         <!-- Anti-Metric Column -->
         <div>
           <div class="anti-metric-card">
-            <div class="anti-metric-title">Anti-metric — watch, never optimise</div>
-            <p style="font-size: 13px; font-weight: 700; color: #ffffff; margin-bottom: 8px;">
-              Frame and lens attach rate on the resulting visit.
+            <div class="anti-metric-title">Anti-Metric: Sales Attach Rate</div>
+            <p style="font-size: 13px; font-weight: 700; color: #ffffff; margin-bottom: 6px;">
+              Frame and lens attach rate on resulting visit.
             </p>
             <div class="anti-metric-body">
-              It will rise, and that's fine. It must not appear in anyone's goals, on a decision dashboard, or in any experiment's success criteria. Optimising it converts a health check into a sales trigger and parents feel it within one cycle.<br/><br/>
-              <strong>Coupled alarm:</strong> if attach rate grows faster than attendance for two consecutive months, audit the referral threshold and the result copy.
+              Must never appear in team goals or experiment criteria. Optimising it converts a health check into a sales trigger.<br/><br/>
+              <strong>Coupled alarm:</strong> Audit threshold if attach rate grows faster than attendance for 2 consecutive months.
             </div>
           </div>
         </div>
