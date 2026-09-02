@@ -231,10 +231,6 @@
       gap: 10px;
     }
 
-    .card-title span {
-      font-size: 24px;
-    }
-
     /* Data Highlights & Callouts */
     .stat-callout {
       background: rgba(15, 23, 42, 0.6);
@@ -246,7 +242,7 @@
 
     .stat-callout strong {
       color: var(--lk-teal);
-      font-size: 20px;
+      font-size: 18px;
       display: block;
       margin-bottom: 4px;
     }
@@ -293,48 +289,36 @@
       border: none;
     }
 
-    /* Metrics List */
-    .metric-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 0;
+    /* Metrics Table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .data-table th {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--lk-text-sub);
+      background: rgba(15, 23, 42, 0.6);
+      padding: 10px 14px;
       border-bottom: 1px solid var(--lk-border);
     }
 
-    .metric-item:last-child {
-      border-bottom: none;
-    }
-
-    .metric-name {
-      font-weight: 600;
+    .data-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--lk-border);
       color: var(--lk-text);
     }
 
-    .metric-desc {
-      font-size: 12px;
-      color: var(--lk-text-sub);
+    .data-table tr:last-child td {
+      border-bottom: none;
     }
 
-    .badge-rule {
-      background: rgba(239, 68, 68, 0.2);
-      color: #f87171;
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .badge-green {
-      background: rgba(16, 185, 129, 0.2);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
-    }
+    .pill-leading { color: var(--lk-teal); font-weight: 700; font-size: 11px; }
+    .pill-lagging { color: var(--lk-gold); font-weight: 700; font-size: 11px; }
 
     footer {
       text-align: center;
@@ -354,26 +338,26 @@
       lenskart<span>.</span> <span style="font-size: 14px; font-weight: 500; color: var(--lk-text-sub);">/ Vision Check for Kids</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px;">
-      <span class="meta-badge">PRD & Interactive Prototype</span>
+      <span class="meta-badge">PRD & Case Study Deck</span>
       <span style="font-size: 13px; color: var(--lk-text-sub);">By <strong>Mayank Arora</strong></span>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-tag">Product Management Case Study</div>
-    <h1>Vision Check for Kids (Ring Run / Shape Chase)</h1>
+    <div class="hero-tag">Product Case Study</div>
+    <h1>Vision Check for Kids (Shape Chase)</h1>
     <p>A parent checks their child's eyesight at home in 60 seconds. The child thinks he is playing a game. The result reaches the parent securely inside the Lenskart App, never reaching the child.</p>
 
     <div class="hero-actions">
       <button class="btn btn-primary" onclick="switchTab('prototype')">
-        <span>🎮</span> Launch Interactive Prototype
+        Launch Interactive Prototype
       </button>
       <button class="btn btn-secondary" onclick="switchTab('prd')">
-        <span>📄</span> Read Executive PRD
+        Read Executive PRD
       </button>
       <button class="btn btn-secondary" onclick="switchTab('metrics')">
-        <span>📊</span> Product Metrics & Guardrails
+        View Metrics
       </button>
     </div>
   </section>
@@ -381,17 +365,17 @@
   <div class="main-container">
     <!-- Tabs Navigation Bar -->
     <div class="tabs-nav">
-      <button class="tab-btn active" onclick="switchTab('prd')" id="tab-btn-prd">1. Executive PRD & Problem</button>
-      <button class="tab-btn" onclick="switchTab('solution')" id="tab-btn-solution">2. Solution & Architecture</button>
-      <button class="tab-btn" onclick="switchTab('prototype')" id="tab-btn-prototype">3. Interactive Prototype</button>
-      <button class="tab-btn" onclick="switchTab('metrics')" id="tab-btn-metrics">4. Metrics & Business Impact</button>
+      <button class="tab-btn active" onclick="switchTab('prd')" id="tab-btn-prd">1. Executive PRD and Problem</button>
+      <button class="tab-btn" onclick="switchTab('solution')" id="tab-btn-solution">2. Solution</button>
+      <button class="tab-btn" onclick="switchTab('prototype')" id="tab-btn-prototype">3. Prototype</button>
+      <button class="tab-btn" onclick="switchTab('metrics')" id="tab-btn-metrics">4. Metrics</button>
     </div>
 
-    <!-- TAB 1: PRD & PROBLEM -->
+    <!-- TAB 1: EXECUTIVE PRD AND PROBLEM -->
     <div class="tab-content active" id="tab-prd">
       <div class="grid-2">
         <div class="card">
-          <div class="card-title"><span>⚠️</span> The Problem & Evidence</div>
+          <div class="card-title">The Problem & Evidence</div>
           <p style="font-size: 14px; color: var(--lk-text-sub); margin-bottom: 16px;">
             A child's eyes change faster than anything in a family's life reports. Nothing in a normal week tells a parent that their child stopped seeing clearly four months ago.
           </p>
@@ -414,7 +398,7 @@
         </div>
 
         <div class="card">
-          <div class="card-title"><span>🎯</span> User Personas</div>
+          <div class="card-title">User Personas</div>
           
           <h4 style="color: var(--lk-gold); font-size: 14px; margin-bottom: 6px;">Aarav, 13 — The User Who Cannot Buy</h4>
           <p style="font-size: 12px; color: var(--lk-text-sub); margin-bottom: 10px;">
@@ -451,11 +435,11 @@
       </div>
     </div>
 
-    <!-- TAB 2: SOLUTION & ARCHITECTURE -->
+    <!-- TAB 2: SOLUTION -->
     <div class="tab-content" id="tab-solution">
       <div class="grid-2">
         <div class="card">
-          <div class="card-title"><span>🎮</span> Pediatric Shape Chase Engine</div>
+          <div class="card-title">Pediatric Shape Chase Engine</div>
           <p style="font-size: 14px; color: var(--lk-text-sub); margin-bottom: 16px;">
             A 60-second PWA game played by the child using pediatric Lea symbols (<strong>Heart ❤️, House 🏠, Circle 🟢, Square 🟨, Star ⭐, Triangle 🔺, Moon 🌙, Balloon 🎈</strong>).
           </p>
@@ -472,14 +456,14 @@
             </div>
 
             <div style="background: rgba(15, 23, 42, 0.6); padding: 14px; border-radius: 12px; border: 1px solid var(--lk-border);">
-              <h5 style="color: var(--lk-green); font-size: 13px; margin-bottom: 4px;">3. Specsy Dino 🦖 Real-time Distance Guard</h5>
+              <h5 style="color: var(--lk-green); font-size: 13px; margin-bottom: 4px;">3. Specsy Dino Real-time Distance Guard</h5>
               <p style="font-size: 12px; color: var(--lk-text-sub);">Camera feed monitors distance during play. If child leans &lt;35 cm or drifts &gt;50 cm, Dino mascot pauses play with a speech bubble warning.</p>
             </div>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-title"><span>📱</span> User Journey & Handover</div>
+          <div class="card-title">User Journey & Setup</div>
           
           <div style="position: relative; padding-left: 20px; border-left: 2px solid var(--lk-teal); display: flex; flex-direction: column; gap: 20px;">
             <div>
@@ -510,7 +494,7 @@
       </div>
     </div>
 
-    <!-- TAB 3: PROTOTYPE EMBED -->
+    <!-- TAB 3: PROTOTYPE -->
     <div class="tab-content" id="tab-prototype">
       <div class="card prototype-container">
         <div style="text-align: center; max-width: 700px;">
@@ -520,10 +504,10 @@
           </p>
           <div style="margin-top: 12px; display: flex; gap: 12px; justify-content: center;">
             <a href="https://lenskartgameplay.netlify.app/" target="_blank" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px;">
-              <span>🔗</span> Open Netlify Production URL
+              Open Netlify Production URL
             </a>
             <a href="lenskart_vision_check.html" target="_blank" class="btn btn-secondary" style="padding: 8px 16px; font-size: 12px;">
-              <span>📄</span> Open Local Single-File HTML
+              Open Local Single-File HTML
             </a>
           </div>
         </div>
@@ -534,104 +518,116 @@
       </div>
     </div>
 
-    <!-- TAB 4: METRICS & IMPACT -->
+    <!-- TAB 4: METRICS -->
     <div class="tab-content" id="tab-metrics">
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title"><span>📈</span> Metric Framework</div>
-          
-          <div class="stat-callout" style="border-left-color: var(--lk-teal);">
-            <strong>North Star Metric</strong>
-            Attended under-18 eye tests attributable to Vision Check, per month. (Attended, not booked — an un-attended booking is worth zero).
-          </div>
-
-          <div style="margin-top: 20px;">
-            <h4 style="color: white; font-size: 14px; margin-bottom: 12px;">Funnel Conversion Metrics:</h4>
-            
-            <div class="metric-item">
-              <div>
-                <div class="metric-name">Session Completion Rate</div>
-                <div class="metric-desc">Sessions started → completed without void</div>
-              </div>
-              <span class="badge-green">Target > 85%</span>
-            </div>
-
-            <div class="metric-item">
-              <div>
-                <div class="metric-name">In-App Result View Rate</div>
-                <div class="metric-desc">Results delivered → opened by parent within 24h</div>
-              </div>
-              <span class="badge-green">Target > 90%</span>
-            </div>
-
-            <div class="metric-item">
-              <div>
-                <div class="metric-name">Booking Rate from REFER</div>
-                <div class="metric-desc">REFER verdict → store or home visit booked</div>
-              </div>
-              <span class="badge-green">Target > 40%</span>
-            </div>
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        
+        <!-- North Star Metric Block -->
+        <div class="card" style="background: linear-gradient(135deg, rgba(0, 186, 198, 0.08) 0%, rgba(30, 41, 59, 0.95) 100%); border: 2px solid var(--lk-teal);">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; text-transform: uppercase; color: var(--lk-teal); display: block; margin-bottom: 6px;">Primary Metric</span>
+          <h3 style="font-family: 'Outfit', sans-serif; font-size: 20px; color: white; margin-bottom: 8px;">North Star Metric</h3>
+          <div style="font-size: 18px; font-weight: 800; color: #ffffff;">
+            Attended under-18 eye tests attributable to Vision Check that resulted in a prescription change, per month.
           </div>
         </div>
 
+        <!-- Funnel Conversion Table -->
         <div class="card">
-          <div class="card-title"><span>🛡️</span> Guardrails & Anti-Metrics</div>
-          
-          <div class="stat-callout" style="border-left-color: var(--lk-accent);">
-            <strong>P0 Safety Metric — False Negatives</strong>
-            Children classified CLEAR who need a prescription change within 90 days of an in-store test. If >10% of CLEAR children need a power change → pull the feature immediately.
-          </div>
-
-          <div style="margin-top: 20px;">
-            <h4 style="color: white; font-size: 14px; margin-bottom: 12px;">Critical Guardrail Rules:</h4>
-
-            <div class="metric-item">
-              <div>
-                <div class="metric-name">Child-Facing Leakage</div>
-                <div class="metric-desc">Any instance of clinical language reaching a child</div>
-              </div>
-              <span class="badge-rule">ZERO TOLERANCE P0</span>
-            </div>
-
-            <div class="metric-item">
-              <div>
-                <div class="metric-name">Anti-Metric: Attach Rate</div>
-                <div class="metric-desc">Frame/lens sales attach rate on resulting visit</div>
-              </div>
-              <span class="badge-rule">DO NOT OPTIMIZE</span>
-            </div>
-
-            <div style="font-size: 12px; color: var(--lk-text-sub); margin-top: 12px; line-height: 1.5; background: rgba(15, 23, 42, 0.5); padding: 10px; border-radius: 8px;">
-              💡 <strong>Why Attach Rate is an Anti-Metric:</strong> Optimizing sales attach rate converts a health check into a sales trigger. Parents will feel it within one cycle and trust will degrade.
-            </div>
+          <h3 style="font-family: 'Outfit', sans-serif; font-size: 18px; color: white; margin-bottom: 12px;">Core Conversion Funnel</h3>
+          <div style="overflow-x: auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Stage</th>
+                  <th>Definition</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Entry → Consent</strong></td>
+                  <td>Consent completed / entry shown</td>
+                  <td><span class="pill-leading">Leading</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Consent → Session Start</strong></td>
+                  <td>First target rendered / consent granted</td>
+                  <td><span class="pill-leading">Leading</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Session Start → Valid Completion</strong></td>
+                  <td>Completed and not voided / started</td>
+                  <td><span class="pill-leading">Leading</span></td>
+                </tr>
+                <tr>
+                  <td><strong>REFER → Booked</strong></td>
+                  <td>Bookings / REFER results</td>
+                  <td><span class="pill-leading">Leading</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Booked → Attended</strong></td>
+                  <td>Attended / booked</td>
+                  <td><span class="pill-lagging">Lagging</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Attended → Prescription Changed</strong></td>
+                  <td>Power change issued / attended</td>
+                  <td><span class="pill-lagging">Lagging</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
+
+        <!-- Core Outcomes & P0 Guardrail Grid -->
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; color: white; margin-bottom: 8px;">Strategic Outcomes</h3>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div>
+                <strong style="color: var(--lk-teal); font-size: 13px;">Prescription freshness:</strong>
+                <p style="font-size: 12px; color: var(--lk-text-sub);">Share of under-18 prescriptions on file under 12 months old.</p>
+              </div>
+              <div>
+                <strong style="color: var(--lk-gold); font-size: 13px;">Time to correction:</strong>
+                <p style="font-size: 12px; color: var(--lk-text-sub);">Median days from session to glasses in child's hands.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="border-left: 4px solid var(--lk-accent);">
+            <h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; color: white; margin-bottom: 8px;">P0 Safety Guardrail</h3>
+            <div style="font-size: 13px; font-weight: 700; color: var(--lk-accent); margin-bottom: 4px;">
+              False Negatives Trigger
+            </div>
+            <p style="font-size: 12px; color: var(--lk-text-sub); line-height: 1.5;">
+              If <strong>&gt; 10% of CLEAR children</strong> require a power change within 90 days of an in-store test, the feature is immediately pulled.
+            </p>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 
   <footer>
-    Lenskart Kids Vision Check Case Study & PRD Presentation • Author: <strong>Mayank Arora</strong> • Built for Product Management Review
+    Lenskart Kids Vision Check Case Study & PRD Presentation • Author: <strong>Mayank Arora</strong>
   </footer>
 
   <script>
     function switchTab(tabId) {
-      // Hide all contents
       document.querySelectorAll('.tab-content').forEach(content => {
         content.classList.remove('active');
       });
-      // Remove active from buttons
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('active');
       });
 
-      // Show selected content
       const targetContent = document.getElementById('tab-' + tabId);
       if (targetContent) {
         targetContent.classList.add('active');
       }
 
-      // Highlight selected tab button
       const targetBtn = document.getElementById('tab-btn-' + tabId);
       if (targetBtn) {
         targetBtn.classList.add('active');

@@ -34,7 +34,7 @@
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 900px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -54,7 +54,6 @@
       font-size: 26px;
       font-weight: 800;
       color: #ffffff;
-      letter-spacing: -0.5px;
     }
 
     .tag-badge {
@@ -67,60 +66,14 @@
       border-radius: 4px;
     }
 
-    .block-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--lk-teal);
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    .block-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 18px;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 12px;
-    }
-
     .card {
       background: var(--lk-card);
       border: 1px solid var(--lk-border);
       border-radius: 12px;
-      padding: 20px;
+      padding: 24px;
     }
 
-    /* BLOCK 1: North Star (Highest Visual Weight) */
-    .north-star-block {
-      background: linear-gradient(135deg, rgba(0, 186, 198, 0.08) 0%, rgba(30, 41, 59, 0.95) 100%);
-      border: 2px solid var(--lk-teal);
-      box-shadow: 0 10px 30px rgba(0, 186, 198, 0.1);
-      border-radius: 14px;
-      padding: 28px;
-    }
-
-    .north-star-metric {
-      font-family: 'Outfit', sans-serif;
-      font-size: 22px;
-      font-weight: 800;
-      color: #ffffff;
-      line-height: 1.3;
-      margin-bottom: 12px;
-    }
-
-    .north-star-desc {
-      font-size: 13px;
-      color: var(--lk-subtext);
-      background: rgba(15, 23, 42, 0.6);
-      padding: 14px;
-      border-radius: 8px;
-      border-left: 3px solid var(--lk-teal);
-      line-height: 1.5;
-    }
-
-    /* BLOCK 2 & 5: Tables (Removed "If low look at" column) */
+    /* Table */
     .data-table {
       width: 100%;
       border-collapse: collapse;
@@ -142,7 +95,6 @@
       padding: 12px 14px;
       border-bottom: 1px solid var(--lk-border);
       color: var(--lk-text);
-      vertical-align: top;
     }
 
     .data-table tr:last-child td {
@@ -152,148 +104,10 @@
     .pill-leading { color: var(--lk-teal); font-weight: 700; font-size: 11px; }
     .pill-lagging { color: var(--lk-gold); font-weight: 700; font-size: 11px; }
 
-    /* BLOCK 3: Key Outcomes Grid (Concise 2 Cards) */
-    .outcomes-grid {
+    .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
-    }
-
-    @media (max-width: 768px) {
-      .outcomes-grid { grid-template-columns: 1fr; }
-      .grid-2col { grid-template-columns: 1fr !important; }
-    }
-
-    .outcome-card-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 6px;
-    }
-
-    .outcome-card-desc {
-      font-size: 12px;
-      color: var(--lk-subtext);
-      line-height: 1.5;
-    }
-
-    /* BLOCK 4: Signal Quality (Full Width & Highest Visual Weight) */
-    .signal-quality-block {
-      background: rgba(30, 41, 59, 0.8);
-      border: 1px solid rgba(0, 186, 198, 0.4);
-      border-top: 4px solid var(--lk-teal);
-      border-radius: 14px;
-      padding: 28px;
-    }
-
-    .signal-opening-banner {
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid var(--lk-border);
-      padding: 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      color: var(--lk-text);
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-
-    .signal-opening-banner strong {
-      color: var(--lk-gold);
-    }
-
-    .signal-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    @media (max-width: 900px) {
-      .signal-cards-grid { grid-template-columns: 1fr; }
-    }
-
-    .signal-card {
-      background: rgba(15, 23, 42, 0.5);
-      border: 1px solid var(--lk-border);
-      border-radius: 8px;
-      padding: 14px;
-    }
-
-    .signal-card-header {
-      font-family: 'Space Mono', monospace;
-      font-size: 12px;
-      color: var(--lk-teal);
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .signal-formula {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      color: var(--lk-subtext);
-      background: rgba(0, 0, 0, 0.3);
-      padding: 2px 6px;
-      border-radius: 4px;
-      display: inline-block;
-      margin-bottom: 6px;
-    }
-
-    .signal-card-body {
-      font-size: 12px;
-      color: var(--lk-subtext);
-      line-height: 1.4;
-    }
-
-    .signal-subboxes {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .subbox {
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid var(--lk-border);
-      padding: 12px 14px;
-      border-radius: 8px;
-      font-size: 12px;
-      color: var(--lk-subtext);
-      line-height: 1.4;
-    }
-
-    .subbox-title {
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 4px;
-    }
-
-    /* BLOCK 5: Guardrails & Anti-Metric Grid */
-    .grid-2col {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 16px;
-    }
-
-    .anti-metric-card {
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      border-left: 4px solid var(--lk-red);
-      padding: 16px;
-      border-radius: 8px;
-      height: 100%;
-    }
-
-    .anti-metric-title {
-      font-weight: 800;
-      color: var(--lk-red);
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-
-    .anti-metric-body {
-      font-size: 12px;
-      color: var(--lk-subtext);
-      line-height: 1.5;
     }
   </style>
 </head>
@@ -301,200 +115,97 @@
 
   <div class="container">
 
-    <!-- EXECUTIVE HEADER -->
     <header class="page-header">
       <div>
-        <h1>Vision Check for Kids — Success Metrics</h1>
-        <p>Lenskart Co-founder Review Edition</p>
+        <h1>Vision Check for Kids — Metrics</h1>
+        <p>Lenskart Product Case Study</p>
       </div>
-      <span class="tag-badge">EXECUTIVE SUMMARY</span>
+      <span class="tag-badge">SUCCESS METRICS</span>
     </header>
 
-    <!-- BLOCK 1: NORTH STAR (HEAVY VISUAL WEIGHT) -->
-    <section>
-      <span class="block-label">Block 1 — Primary Metric</span>
-      <div class="north-star-block">
-        <h2 class="block-title" style="margin-bottom: 8px; color: var(--lk-teal);">North Star Metric</h2>
-        <div class="north-star-metric">
-          Attended under-18 eye tests attributable to Vision Check that resulted in a prescription change, per month.
-        </div>
-        <div class="north-star-desc">
-          <strong>Attended, not booked</strong> — an unattended booking is worth zero. And <strong>resulted in a change</strong>, because a referral that finds nothing means the signal fired wrongly. Deliberately not app sessions or store walk-ins: both rise when the product gets pushier, not when a child sees better.
-        </div>
+    <!-- North Star Metric Block -->
+    <div class="card" style="background: linear-gradient(135deg, rgba(0, 186, 198, 0.08) 0%, rgba(30, 41, 59, 0.95) 100%); border: 2px solid var(--lk-teal);">
+      <span style="font-family: 'Space Mono', monospace; font-size: 11px; text-transform: uppercase; color: var(--lk-teal); display: block; margin-bottom: 6px;">Primary Metric</span>
+      <h2 style="font-family: 'Outfit', sans-serif; font-size: 20px; color: white; margin-bottom: 8px;">North Star Metric</h2>
+      <div style="font-size: 18px; font-weight: 800; color: #ffffff;">
+        Attended under-18 eye tests attributable to Vision Check that resulted in a prescription change, per month.
       </div>
-    </section>
+    </div>
 
-    <!-- BLOCK 2: FUNNEL CONVERSION (NO "IF LOW LOOK AT" COLUMN) -->
-    <section>
-      <span class="block-label">Block 2 — Core Conversion Funnel</span>
-      <h2 class="block-title">Funnel Conversion</h2>
-      <div class="card" style="padding: 0; overflow: hidden;">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Stage</th>
-              <th>Definition</th>
-              <th>Type</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Entry → Consent</strong></td>
-              <td>Consent completed / entry shown</td>
-              <td><span class="pill-leading">Leading</span></td>
-            </tr>
-            <tr>
-              <td><strong>Consent → Session Start</strong></td>
-              <td>First target rendered / consent granted</td>
-              <td><span class="pill-leading">Leading</span></td>
-            </tr>
-            <tr>
-              <td><strong>Session Start → Valid Completion</strong></td>
-              <td>Completed and not voided / started</td>
-              <td><span class="pill-leading">Leading</span></td>
-            </tr>
-            <tr>
-              <td><strong>REFER → Booked</strong></td>
-              <td>Bookings / REFER results</td>
-              <td><span class="pill-leading">Leading</span></td>
-            </tr>
-            <tr>
-              <td><strong>Booked → Attended</strong></td>
-              <td>Attended / booked</td>
-              <td><span class="pill-lagging">Lagging</span></td>
-            </tr>
-            <tr>
-              <td><strong>Attended → Prescription Changed</strong></td>
-              <td>Power change issued / attended</td>
-              <td><span class="pill-lagging">Lagging</span></td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- Funnel Conversion Table -->
+    <div class="card" style="padding: 0; overflow: hidden;">
+      <div style="padding: 16px 20px 8px 20px;">
+        <h3 style="font-family: 'Outfit', sans-serif; font-size: 18px; color: white;">Core Conversion Funnel</h3>
       </div>
-    </section>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Definition</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Entry → Consent</strong></td>
+            <td>Consent completed / entry shown</td>
+            <td><span class="pill-leading">Leading</span></td>
+          </tr>
+          <tr>
+            <td><strong>Consent → Session Start</strong></td>
+            <td>First target rendered / consent granted</td>
+            <td><span class="pill-leading">Leading</span></td>
+          </tr>
+          <tr>
+            <td><strong>Session Start → Valid Completion</strong></td>
+            <td>Completed and not voided / started</td>
+            <td><span class="pill-leading">Leading</span></td>
+          </tr>
+          <tr>
+            <td><strong>REFER → Booked</strong></td>
+            <td>Bookings / REFER results</td>
+            <td><span class="pill-leading">Leading</span></td>
+          </tr>
+          <tr>
+            <td><strong>Booked → Attended</strong></td>
+            <td>Attended / booked</td>
+            <td><span class="pill-lagging">Lagging</span></td>
+          </tr>
+          <tr>
+            <td><strong>Attended → Prescription Changed</strong></td>
+            <td>Power change issued / attended</td>
+            <td><span class="pill-lagging">Lagging</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <!-- BLOCK 3: KEY OUTCOMES (CONCISE 2 CARDS) -->
-    <section>
-      <span class="block-label">Block 3 — Core Outcomes</span>
-      <h2 class="block-title">Outcomes</h2>
-      <div class="outcomes-grid">
-        <div class="card">
-          <div class="outcome-card-title">Prescription freshness</div>
-          <div class="outcome-card-desc">
-            Share of under-18 prescriptions on file under 12 months old. The key long-term metric this product exists to move, measurable directly from order data.
+    <!-- Outcomes & Guardrail Grid -->
+    <div class="grid-2">
+      <div class="card">
+        <h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; color: white; margin-bottom: 12px;">Strategic Outcomes</h3>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <strong style="color: var(--lk-teal); font-size: 13px;">Prescription freshness:</strong>
+            <p style="font-size: 12px; color: var(--lk-subtext);">Share of under-18 prescriptions on file under 12 months old.</p>
           </div>
-        </div>
-
-        <div class="card">
-          <div class="outcome-card-title">Time to correction</div>
-          <div class="outcome-card-desc">
-            Median days from initial screening session to glasses delivered in the child's hands.
+          <div>
+            <strong style="color: var(--lk-gold); font-size: 13px;">Time to correction:</strong>
+            <p style="font-size: 12px; color: var(--lk-subtext);">Median days from session to glasses in child's hands.</p>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- BLOCK 4: SIGNAL QUALITY (HEAVY VISUAL WEIGHT & FULL WIDTH) -->
-    <section>
-      <span class="block-label">Block 4 — Diagnostic Reliability</span>
-      <div class="signal-quality-block">
-        <h2 class="block-title" style="color: var(--lk-teal); font-size: 20px;">Signal Quality</h2>
-        
-        <div class="signal-opening-banner">
-          <strong>Accuracy is the wrong metric.</strong> At ~15% prevalence, classifying every child CLEAR scores 85% accuracy and catches nobody. Precision, recall, and NPV are tracked separately because they cost different amounts to obtain.
+      <div class="card" style="border-left: 4px solid var(--lk-accent);">
+        <h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; color: white; margin-bottom: 8px;">P0 Safety Guardrail</h3>
+        <div style="font-size: 13px; font-weight: 700; color: var(--lk-accent); margin-bottom: 4px;">
+          False Negatives Trigger
         </div>
-
-        <div class="signal-cards-grid">
-          <div class="signal-card">
-            <div class="signal-card-header">Precision (PPV) — Free</div>
-            <div class="signal-formula">TP / (TP + FP)</div>
-            <div class="signal-card-body">
-              Of children referred, the share who genuinely needed correction. Ground truth obtained on all walk-ins.
-            </div>
-          </div>
-
-          <div class="signal-card">
-            <div class="signal-card-header">Recall — Budgeted</div>
-            <div class="signal-formula">TP / (TP + FN)</div>
-            <div class="signal-card-body">
-              Measured by monthly random sampling of CLEAR children offered a free in-store test.
-            </div>
-          </div>
-
-          <div class="signal-card">
-            <div class="signal-card-header">NPV — Safety Floor</div>
-            <div class="signal-formula">TN / (TN + FN)</div>
-            <div class="signal-card-body">
-              The safety floor. Directly ties to the P0 false negative guardrail (1 − NPV).
-            </div>
-          </div>
-        </div>
-
-        <div class="signal-subboxes">
-          <div class="subbox">
-            <div class="subbox-title">Ground Truth Standard</div>
-            "Needed correction" = in-store refraction issued a new prescription or changed existing power by ≥ 0.50 D in either eye.
-          </div>
-
-          <div class="subbox">
-            <div class="subbox-title">Test-Retest Protocol</div>
-            Two sessions 7 days apart with no clinical change expected to establish baseline screening reliability before setting thresholds.
-          </div>
-        </div>
+        <p style="font-size: 12px; color: var(--lk-subtext); line-height: 1.5;">
+          If <strong>&gt; 10% of CLEAR children</strong> require a power change within 90 days of an in-store test, the feature is immediately pulled.
+        </p>
       </div>
-    </section>
-
-    <!-- BLOCK 5: GUARDRAILS & ANTI-METRIC -->
-    <section>
-      <span class="block-label">Block 5 — Risk Control & Non-Negotiables</span>
-      <h2 class="block-title">Guardrails & Anti-Metric</h2>
-      
-      <div class="grid-2col">
-        <!-- Guardrails Table Column -->
-        <div class="card" style="padding: 0; overflow: hidden;">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Guardrail</th>
-                <th>Trigger</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>False negatives (P0)</strong> — CLEAR needing power change in 90d</td>
-                <td><strong style="color: var(--lk-red);">&gt; 10% of CLEAR</strong></td>
-                <td>Pull feature</td>
-              </tr>
-              <tr>
-                <td><strong>False positives</strong> — REFER finding no power change</td>
-                <td><strong style="color: var(--lk-gold);">&gt; 40% of REFER</strong></td>
-                <td>Tighten threshold (prevents commercial drift)</td>
-              </tr>
-              <tr>
-                <td><strong>Child-facing leakage</strong> — Clinical terms shown to child</td>
-                <td><strong style="color: var(--lk-red);">Any instance</strong></td>
-                <td>P0 defect</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Anti-Metric Column -->
-        <div>
-          <div class="anti-metric-card">
-            <div class="anti-metric-title">Anti-Metric: Sales Attach Rate</div>
-            <p style="font-size: 13px; font-weight: 700; color: #ffffff; margin-bottom: 6px;">
-              Frame and lens attach rate on resulting visit.
-            </p>
-            <div class="anti-metric-body">
-              Must never appear in team goals or experiment criteria. Optimising it converts a health check into a sales trigger.<br/><br/>
-              <strong>Coupled alarm:</strong> Audit threshold if attach rate grows faster than attendance for 2 consecutive months.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
 
   </div>
 
