@@ -180,7 +180,7 @@
       </table>
     </div>
 
-    <!-- Outcomes & Guardrail Grid -->
+    <!-- Outcomes & Guardrails Grid -->
     <div class="grid-2">
       <div class="card">
         <h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; color: white; margin-bottom: 12px;">Strategic Outcomes</h3>
@@ -196,14 +196,22 @@
         </div>
       </div>
 
-      <div class="card" style="border-left: 4px solid var(--lk-accent);">
-        <h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; color: white; margin-bottom: 8px;">P0 Safety Guardrail</h3>
-        <div style="font-size: 13px; font-weight: 700; color: var(--lk-accent); margin-bottom: 4px;">
-          False Negatives Trigger
+      <div class="card">
+        <h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; color: white; margin-bottom: 12px;">Guardrail Metrics</h3>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="border-left: 3px solid var(--lk-red); padding-left: 10px;">
+            <strong style="color: var(--lk-red); font-size: 13px;">False Negatives (P0 Safety):</strong>
+            <p style="font-size: 12px; color: var(--lk-subtext); margin-top: 2px; line-height: 1.4;">
+              If <strong>&gt; 10% of CLEAR children</strong> require a power change within 90 days of an in-store test, pull feature immediately.
+            </p>
+          </div>
+          <div style="border-left: 3px solid var(--lk-gold); padding-left: 10px;">
+            <strong style="color: var(--lk-gold); font-size: 13px;">False Positives (Signal Drift):</strong>
+            <p style="font-size: 12px; color: var(--lk-subtext); margin-top: 2px; line-height: 1.4;">
+              If <strong>&gt; 40% of REFER results</strong> find no power change needed in store test, tighten referral threshold (prevents over-referring customers).
+            </p>
+          </div>
         </div>
-        <p style="font-size: 12px; color: var(--lk-subtext); line-height: 1.5;">
-          If <strong>&gt; 10% of CLEAR children</strong> require a power change within 90 days of an in-store test, the feature is immediately pulled.
-        </p>
       </div>
     </div>
 
